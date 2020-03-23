@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {User} from '../../models/github-user';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  constructor() { }
+  @Input() users: User;
 
-  ngOnInit(): void {
+  constructor() {
+    console.log(this.users);
   }
-
 }

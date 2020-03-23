@@ -1,1 +1,6 @@
 <p>search works!</p>
+<div div fxLayout="column" fxLayoutAlign="start start" >
+  <button (click)="getUsers()">Users</button>
+  <button (click)="getUserRepos()">Repos</button>
+</div>
+<app-dashboard [users]="users"></app-dashboard>
