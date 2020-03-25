@@ -1,6 +1,63 @@
-<p>search works!</p>
-<div div fxLayout="column" fxLayoutAlign="start start" >
-  <button (click)="getUsers()">Users</button>
-  <button (click)="getUserRepos()">Repos</button>
+<h1>GitHub User Dashboard</h1>
+
+<form action="">
+  <h2>Search</h2>
+  <div>
+    <label for="search">Search</label>
+    <input type="text" id="search" placeholder="Search GitHub users with username"
+           [(ngModel)]="username" name="username" (keyup)="searchUsername()">
+  </div>
+  <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="row-spacing text-login-error">Username
+    is invalid. Try again.
+  </div>
+
+  <!-- TODO possibly delete later
+  <button class="button" (click)="submit()" [disabled]="form.invalid">Sign In</button>
+  -->
+</form>
+
+<h2>Get users</h2>
+<button (click)="getUsers()">Users</button>
+
+
+<app-dashboard [users]="users" [user]="user" [repos]="repos"></app-dashboard>
+
+<!-- Users data -->
+<div *ngFor="let user of users">
+  <ul>
+    <li>{{user.login}}</li>
+    <li>{{user.repos_url}}</li>
+  </ul>
+  <img width="100" src="{{user.avatar_url}}" alt="">
 </div>
-<app-dashboard [users]="users"></app-dashboard>
+
+<!-- User data -->
+<div *ngIf="user">
+  <h1>{{user.name}}</h1>
+  <h2>{{user.login}}</h2>
+  <img width="100" src="{{user.avatar_url}}" alt="">
+  <ul>
+    <li *ngIf="user.company">Works at {{user.company}}</li>
+    <li *ngIf="user.location">Works at {{user.location}}</li>
+    <li *ngIf="user.bio">Works at {{user.bio}}</li>
+    <li *ngIf="user.hireable">Works at {{user.hireable}}</li>
+    <li *ngIf="user.blog">Works at {{user.blog}}</li>
+    <li *ngIf="user.email">Works at {{user.email}}</li>
+  </ul>
+  <div>
+    <!-- Repos data -->
+    <h3>Repositories</h3>
+    <div *ngFor="let repo of repos">
+      <a href="{{repo.html_url}}">{{repo.name}}</a>
+      <p>{{repo.description}}</p>
+      <div *ngFor="let language of repo.language">
+        <p>{{language}}</p>
+      </div>
+      <!--
+      <div *ngFor="let language of repo.language">
+        <p>{{language}}</p>
+      </div>
+      -->
+    </div>
+  </div>
+</div>

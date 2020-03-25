@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {User} from '../../models/github-user';
+import {User, Users} from '../../models/github-user';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +8,9 @@ import {User} from '../../models/github-user';
 })
 export class DashboardComponent {
 
-  @Input() users: User;
+  @Input() users: Users;
+  @Input() user: User;
+  @Input() repos: any;
 
   constructor() {
     console.log(this.users);

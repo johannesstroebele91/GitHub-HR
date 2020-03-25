@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {SearchComponent} from './search/search.component';
 import {UsersService} from '../services/users.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import {UsersService} from '../services/users.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]
