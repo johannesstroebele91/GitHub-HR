@@ -30,13 +30,16 @@
   <div>
     <!-- Repos data -->
     <h3>Repositories</h3>
-    <div *ngFor="let repo of repos">
-      <div *ngFor="let language of languages | keyvalue">
-        <a href="{{repo.html_url}}">{{repo.name}}</a>
-        <p>{{repo.description}}</p>
-        <p>{{repo.language}}</p>
-        <p class="color-red">{{language.key}}</p>
-        <p class="color-blue">{{language.value}}</p>
+    <div fxLayout="row"  *ngFor="let repo of repos">
+      <a href="{{repo.html_url}}">{{repo.name}}</a>
+      <p>{{repo.description}}</p>
+      <!-- Language Container -->
+      <div fxFlex="50" fxLayout="row" *ngFor="let language of languages">
+        <ng-container *ngFor="let languageItem of language | keyvalue">
+          <!-- Language Item -->
+          <p class="color-red">{{languageItem.key}}</p>
+          <p class="color-blue">{{languageItem.value}}</p>
+        </ng-container>
       </div>
     </div>
     <div>
