@@ -5,31 +5,14 @@
   <div>
     <label for="search">Search</label>
     <input type="text" id="search" placeholder="Search GitHub users with username"
-           [(ngModel)]="username" name="username" (keyup)="searchUsername()">
+           [(ngModel)]="username" name="username">
+    <button (click)="searchUsername()">Search</button>
   </div>
-  <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="row-spacing text-login-error">Username
+  <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="text-login-error">Username
     is invalid. Try again.
   </div>
 
-  <!-- TODO possibly delete later
-  <button class="button" (click)="submit()" [disabled]="form.invalid">Sign In</button>
-  -->
 </form>
-
-<h2>Get users</h2>
-<button (click)="getUsers()">Users</button>
-
-
-<app-dashboard [users]="users" [user]="user" [repos]="repos"></app-dashboard>
-
-<!-- Users data -->
-<div *ngFor="let user of users">
-  <ul>
-    <li>{{user.login}}</li>
-    <li>{{user.repos_url}}</li>
-  </ul>
-  <img width="100" src="{{user.avatar_url}}" alt="">
-</div>
 
 <!-- User data -->
 <div *ngIf="user">
@@ -48,16 +31,15 @@
     <!-- Repos data -->
     <h3>Repositories</h3>
     <div *ngFor="let repo of repos">
-      <a href="{{repo.html_url}}">{{repo.name}}</a>
-      <p>{{repo.description}}</p>
-      <div *ngFor="let language of repo.language">
-        <p>{{language}}</p>
+      <div *ngFor="let language of languages | keyvalue">
+        <a href="{{repo.html_url}}">{{repo.name}}</a>
+        <p>{{repo.description}}</p>
+        <p>{{repo.language}}</p>
+        <p class="color-red">{{language.key}}</p>
+        <p class="color-blue">{{language.value}}</p>
       </div>
-      <!--
-      <div *ngFor="let language of repo.language">
-        <p>{{language}}</p>
-      </div>
-      -->
+    </div>
+    <div>
     </div>
   </div>
 </div>

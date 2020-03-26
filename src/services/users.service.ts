@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Users} from '../models/github-user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,14 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
 
+  updateUsername(username: string) {
+    this.username = username;
+  }
+
   // Gets data from GitHub API of the respective user
   getUserData(): Observable<any> {
-    return this.http.get('https://api.github.com/users/'
+    return this.http.get('/userapi'
+      + '/'
       + this.username
       + '?client_id='
       + this.clientId
@@ -25,39 +30,26 @@ export class UsersService {
       + this.clientSecret);
   }
 
+  // GET /users/:username/repos
   getUserReposData(): Observable<any> {
-    return this.http.get('https://api.github.com/users/'
+    return this.http.get('/userapi'
+      + '/'
       + this.username
-      + '/repos?client_id='
+      + '/repos'
+      + '?client_id='
       + this.clientId
       + '?client_secret='
       + this.clientSecret);
   }
+
+  // GET /repos/:owner/:repo/languages
   // https://api.github.com/repos/johannesstroebele91/Angular_Knowledge/languages
-  getUserRepoLanguagesData(): Observable<any> {
-    return this.http.get('https://api.github.com/repos/'
-      + this.username
-      + '?client_id='
-      + this.clientId
-      + '?client_secret='
-      + this.clientSecret
+  getUserRepoLanguagesData(repo: any): Observable<any> {
+    return this.http.get('/languagesapi'
+      + '/'
+      + repo.owner.login
+      + '/'
+      + repo.name
       + '/languages');
-  }
-
-  // TODO fix or replace later
-  // Gets data from GitHub API of the respective user
-  getUsersData(): Observable<any> {
-    return this.http.get<Users>('https://api.github.com/users?page=1&per_page=100');
-    /* TODO update or delete later
-    + this.user.username
-    + '?client_id='
-    + this.clientId
-    + '?client_secret='
-    + this.clientSecret);
-    */
-  }
-
-  updateDashboard(username: string) {
-    this.username = username;
   }
 }

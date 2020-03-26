@@ -1,13 +1,3 @@
-export class Users {
-
-  constructor(users: User) {
-    this.users = users;
-  }
-
-  users: User;
-
-}
-
 export class User {
 
   constructor(login: string, id: number, node_id: string,

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UsersService} from '../../services/users.service';
-import {User, Users} from '../../models/github-user';
-import {Observable} from 'rxjs';
+import {User} from '../../models/user';
+import {Language} from '../../models/language';
 
 @Component({
   selector: 'app-search',
@@ -14,52 +14,35 @@ export class SearchComponent {
   username: string;
 
   user: User;
-  userRepos: any;
 
   // TODO fix following class variables
-  users: Users;
   repos: any[];
-  languages: any[];
+  languages: Language[];
 
   constructor(private usersService: UsersService) {
   }
 
-  getUsers() {
-    this.usersService.getUsersData().subscribe((data) => {
-      console.log(data);
-      this.users = data;
-    });
-  }
-
-  getUserRepos() {
-    this.usersService.getUserReposData().subscribe((data) => {
-      console.log(data);
-      this.userRepos = data;
-    });
-  }
-
   searchUsername() {
     // Update GitHub username with input from user
-    this.usersService.updateDashboard(this.username);
+    this.usersService.updateUsername(this.username);
 
     // Gets respective searched user data from service
     // Subscription to function necessary, because it returns an observable
     this.usersService.getUserData().subscribe(data => {
-      console.log(data);
+      console.log('getUserData() ' + data);
       this.user = data;
     });
 
     // Gets respective searched data about user's repos from service
-    this.usersService.getUserReposData().subscribe(data => {
-      console.log(data);
-      this.repos = data;
+    this.usersService.getUserReposData().subscribe(repositories => {
+      console.log('getUserReposData() ' + repositories);
+      this.repos = repositories;
+      this.repos.forEach( repo => {
+        this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
+          console.log('getUserRepoLanguagesData(repo) ' + languages);
+          this.languages = languages;
+        });
+      });
     });
-
-    /*
-    this.usersService.getUserRepoLanguagesData().subscribe(data => {
-      console.log(data);
-      this.languages = data;
-    });
-    */
   }
 }

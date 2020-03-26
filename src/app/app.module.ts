@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {SearchComponent} from './search/search.component';
 import {UsersService} from '../services/users.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -14,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     SearchComponent
   ],
   imports: [
