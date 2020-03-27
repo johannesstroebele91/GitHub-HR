@@ -34,7 +34,7 @@
       <a href="{{repo.html_url}}">{{repo.name}}</a>
       <p>{{repo.description}}</p>
       <!-- Language Container -->
-      <div fxFlex="50" fxLayout="row" *ngFor="let language of languages">
+      <div fxFlex="50" fxLayout="row" *ngFor="let language of languagesPerRepo">
         <ng-container *ngFor="let languageItem of language | keyvalue">
           <!-- Language Item -->
           <p class="color-red">{{languageItem.key}}</p>

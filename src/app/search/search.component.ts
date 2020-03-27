@@ -17,13 +17,15 @@ export class SearchComponent {
 
   // TODO fix following class variables
   repos: any[];
-  languages: Language[];
+  languagesPerRepo: Language[];
+  languagesOfRepos: string[];
 
   constructor(private usersService: UsersService) {
   }
 
   searchUsername() {
-    this.languages = [];
+    this.languagesPerRepo = [];
+    this.languagesOfRepos = [];
     // Update GitHub username with input from user
     this.usersService.updateUsername(this.username);
 
@@ -43,16 +45,21 @@ export class SearchComponent {
       this.usersService.getUserRepoLanguagesData(this.repos[0]).subscribe(languages => {
         console.log('getUserRepoLanguagesData(repo) ' );
         console.log(languages);
-        this.languages.push(languages);
+        this.languagesPerRepo.push(languages);
+        // filterLanguages(languages);
       });
-      /*
-      this.repos.forEach( repo => {
-        this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
-          console.log('getUserRepoLanguagesData(repo) ' );
-          console.log(languages);
-          this.languages = languages;
-        });
-      }); */
     });
+    /* TODO fix
+      function filterLanguages(languagesPerRepo: any) {
+      for (let i in languagesPerRepo) {
+        if(!languagesPerRepo.includes(i)) {
+          this.languagesPerRepo.push(this.languagesOfRepos);
+        }
+      }
+        for (const key in languages) {
+        const value = languages[key];
+      }
+    }
+    */
   }
 }

@@ -5,6 +5,7 @@ This mobile first web dashboard about GitHub users was developed for the [projec
 The goal is providing human resources a more detailed picture of software development job applicants based on their GitHub user data. 
 For example, which programming languages they most frequently code in, how many people follow them and how often they code in general. 
 
+
 ## Technology Stack
 * Frontend: [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5
 * UI component library: [Angular Material](https://material.angular.io/) version 9.2.0
