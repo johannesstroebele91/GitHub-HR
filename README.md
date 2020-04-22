@@ -8,15 +8,11 @@ _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wik
 * Frontend: [HTML](https://www.w3.org/TR/html52/), [SCSS](https://sass-lang.com/), [TypeScript](https://www.typescriptlang.org/)
 * Frontend framework: [Angular CLI version 9.0.5](https://github.com/angular/angular-cli)
 * UI component library: [Angular Material version 9.2.0](https://material.angular.io/)
+* JavaScript Runtime environment: [Node.js for using Angular and the MEAN stack overall](https://nodejs.org/en/) 
 * Version control system: [Git](https://git-scm.com/)
 * Git repository hosting: [Github](http://github.com/)
 * Data source: [GitHub GraphQL API v4](https://developer.github.com/v4/)
 * Data visualization tool: [ngx-charts](https://github.com/swimlane/ngx-charts) (see below for comparison)
-* Optional technology based on the [ME?N Stack](https://en.wikipedia.org/wiki/MEAN_(solution_stack)). It is a a free and open-source JavaScript software stack for building dynamic web sites and web applications_
-   * Database: (e.g. MongoDB)
-   * Backend: (e.g. Express.js)
-   * Operating system: (e.g. Linux)
-   * Deployment: (e.g. [Netlify](https://netlify.com/))
 
 # Important
 * Development server: Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
