@@ -12,7 +12,7 @@ _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wik
 * Version control system: [Git](https://git-scm.com/)
 * Git repository hosting: [Github](http://github.com/)
 * Data source: [GitHub GraphQL API v4](https://developer.github.com/v4/)
-* Data visualization tool: [ngx-charts](https://github.com/swimlane/ngx-charts) (see below for comparison)
+* Data visualization tool: [ngx-charts](https://github.com/swimlane/ngx-charts)
 
 # Important
 * Development server: Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
