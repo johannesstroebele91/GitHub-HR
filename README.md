@@ -1,7 +1,7 @@
 # Summary
-This mobile first web dashboard about GitHub users was developed for the [project 119400A](https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212594) ([Prof. Dr. Joachim Charzinski](https://www.hdm-stuttgart.de/person_view_kuerzel?kuerzel=charzinski)) at the Stuttgart Media University.
+This mobile first web dashboard was developed for the [project 119400A](https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212594) ([Prof. Dr. Joachim Charzinski](https://www.hdm-stuttgart.de/person_view_kuerzel?kuerzel=charzinski)) at the Stuttgart Media University.
 
-The goal is providing human resources a more detailed picture of software development job applicants based on their GitHub user data. For example, which programming languages they most frequently code in, how many people follow them and how often they code in general. This may help them to easier and better evaluate the technical coding qualifications of the applicants.
+The goal is providing human resources a more detailed picture of the coding qualifications of software development job applicants based on their GitHub user data. For example, which programming languages they most frequently code in, how many people follow them and how often they code in general. This may help them to easier and better evaluate the technical coding qualifications of the applicants.
 
 # Technology Stack
 _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wiki/MEAN_(solution_stack)). It is a a free and open-source JavaScript software stack for building dynamic web sites and web applications_
