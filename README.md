@@ -20,7 +20,7 @@ _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wik
 * Data source: [GitHub GraphQL API v4](https://developer.github.com/v4/)
 * Data visualization tool: [ngx-charts](https://github.com/swimlane/ngx-charts)
 
-# Important
+# Development and deployment instructions
 * Development server: Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 * Build: Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 * Running unit tests: Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -29,6 +29,7 @@ _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wik
    * "/languagesapi": getting the coding languages for each repository the GitHub API
 
 # Learnings
+* Design prototype: [Figma](https://www.figma.com/)
 * Directives: Components, structural directives, attribute directives
 * Routing and Navigation
 * Dependency injection and services
@@ -40,7 +41,6 @@ _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wik
 * Version control with git
 
 # Future
-* Design prototype: [Figma](https://www.figma.com/)
 * Data visualization: e.g. [ngx-charts](https://github.com/swimlane/ngx-charts)
 * [RxJS for dealing with more than one event or asynchronous computation](https://angular.io/guide/rx-library)
 * [Testing with Karma and Jasmine](https://angular.io/guide/testing)
