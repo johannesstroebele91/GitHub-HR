@@ -3,6 +3,12 @@ This mobile first web dashboard was developed for the [project 119400A](https://
 
 The goal is providing human resources a more detailed picture of the coding qualifications of software development job applicants based on their GitHub user data. For example, which programming languages they most frequently code in, how many people follow them and how often they code in general. This may help them to easier and better evaluate the technical coding qualifications of the applicants.
 
+# Design
+It was created with [Figma](https://www.figma.com/) based on the [Concept](https://github.com/johannesstroebele91/GitHub_User_Dashboard/wiki/Concept/). The link to the design can be found here: [Figma GitHub User Dashboard](https://www.figma.com/file/nWGswJQDBkAM0IAn1371YH/GitHub-User-Dashboard)
+
+![image](https://user-images.githubusercontent.com/33202527/83942333-db379a80-a7f2-11ea-998c-987b91653fec.png)
+
+
 # Technology Stack
 _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wiki/MEAN_(solution_stack)). It is a a free and open-source JavaScript software stack for building dynamic web sites and web applications_
 * Frontend: [HTML](https://www.w3.org/TR/html52/), [SCSS](https://sass-lang.com/), [TypeScript](https://www.typescriptlang.org/)
