@@ -1,48 +1,49 @@
-<h1>GitHub User Dashboard</h1>
+<div class="container-fluid content">
 
-<form action="">
-  <h2>Search</h2>
-  <div>
-    <label for="search">Search</label>
-    <input type="text" id="search" placeholder="Search GitHub users with username"
-           [(ngModel)]="username" name="username">
-    <button (click)="searchUsername()">Search</button>
-  </div>
-  <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="text-login-error">Username
-    is invalid. Try again.
-  </div>
-
-</form>
-
-<!-- User data -->
-<div *ngIf="user">
-  <h1>{{user.name}}</h1>
-  <h2>{{user.login}}</h2>
-  <img width="100" src="{{user.avatar_url}}" alt="">
-  <ul>
-    <li *ngIf="user.company">Works at {{user.company}}</li>
-    <li *ngIf="user.location">Works at {{user.location}}</li>
-    <li *ngIf="user.bio">Works at {{user.bio}}</li>
-    <li *ngIf="user.hireable">Works at {{user.hireable}}</li>
-    <li *ngIf="user.blog">Works at {{user.blog}}</li>
-    <li *ngIf="user.email">Works at {{user.email}}</li>
-  </ul>
-  <div>
-    <!-- Repos data -->
-    <h3>Repositories</h3>
-    <div fxLayout="row"  *ngFor="let repo of repos">
-      <a href="{{repo.html_url}}">{{repo.name}}</a>
-      <p>{{repo.description}}</p>
-      <!-- Language Container -->
-      <div fxFlex="50" fxLayout="row" *ngFor="let language of languages">
-        <ng-container *ngFor="let languageItem of language | keyvalue">
-          <!-- Language Item -->
-          <p class="color-red">{{languageItem.key}}</p>
-          <p class="color-blue">{{languageItem.value}}</p>
-        </ng-container>
-      </div>
-    </div>
+  <form action="">
+    <h1>Search</h1>
     <div>
+      <label for="search">Search</label>
+      <input type="text" id="search" placeholder="Search GitHub users with username"
+             [(ngModel)]="username" name="username">
+      <button (click)="searchUsername()">Search</button>
+    </div>
+    <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="text-login-error">Username
+      is invalid. Try again.
+    </div>
+
+  </form>
+
+  <!-- User data -->
+  <div *ngIf="user">
+    <h1>{{user.name}}</h1>
+    <h2>{{user.login}}</h2>
+    <img width="100" src="{{user.avatar_url}}" alt="">
+    <ul>
+      <li *ngIf="user.company">Works at {{user.company}}</li>
+      <li *ngIf="user.location">Works at {{user.location}}</li>
+      <li *ngIf="user.bio">Works at {{user.bio}}</li>
+      <li *ngIf="user.hireable">Works at {{user.hireable}}</li>
+      <li *ngIf="user.blog">Works at {{user.blog}}</li>
+      <li *ngIf="user.email">Works at {{user.email}}</li>
+    </ul>
+    <div>
+      <!-- Repos data -->
+      <h3>Repositories</h3>
+      <div fxLayout="row" *ngFor="let repo of repos">
+        <a href="{{repo.html_url}}">{{repo.name}}</a>
+        <p>{{repo.description}}</p>
+        <!-- Language Container -->
+        <div fxFlex="50" fxLayout="row" *ngFor="let language of languages">
+          <ng-container *ngFor="let languageItem of language | keyvalue">
+            <!-- Language Item -->
+            <p class="color-red">{{languageItem.key}}</p>
+            <p class="color-blue">{{languageItem.value}}</p>
+          </ng-container>
+        </div>
+      </div>
+      <div>
+      </div>
     </div>
   </div>
 </div>
