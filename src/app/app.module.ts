@@ -9,11 +9,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {SearchComponent} from './search/search.component';
 import {UsersService} from '../services/users.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    NavbarComponent
   ],
   imports: [
     HttpClientModule,
@@ -22,7 +25,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]
