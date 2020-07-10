@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 
@@ -21,6 +21,8 @@ export class UsersService {
 
   // Gets data from GitHub API of the respective user
   getUserData(): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+
     return this.http.get('/userapi'
       + '/'
       + this.username
@@ -28,11 +30,14 @@ export class UsersService {
       + this.clientId
       + '?client_secret='
       + this.clientSecret,
-      {responseType: 'json'});
+      {headers, responseType: 'text'}
+    );
   }
 
   // GET /users/:username/repos
   getUserReposData(): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+
     return this.http.get('/userapi'
       + '/'
       + this.username
@@ -41,18 +46,22 @@ export class UsersService {
       + this.clientId
       + '?client_secret='
       + this.clientSecret,
-      {responseType: 'json'});
+      {headers, responseType: 'text'}
+    );
   }
 
   // GET /repos/:owner/:repo/languages
   // https://api.github.com/repos/johannesstroebele91/Angular_Knowledge/languages
   getUserRepoLanguagesData(repo: any): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+
     return this.http.get('/languagesapi'
       + '/'
       + repo.owner.login
       + '/'
       + repo.name
       + '/languages',
-      {responseType: 'json'});
+      {headers, responseType: 'text'}
+    );
   }
 }
