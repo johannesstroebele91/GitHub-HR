@@ -27,7 +27,8 @@ export class UsersService {
       + '?client_id='
       + this.clientId
       + '?client_secret='
-      + this.clientSecret);
+      + this.clientSecret,
+      {responseType: 'text'});
   }
 
   // GET /users/:username/repos
@@ -39,7 +40,8 @@ export class UsersService {
       + '?client_id='
       + this.clientId
       + '?client_secret='
-      + this.clientSecret);
+      + this.clientSecret,
+      {responseType: 'text'});
   }
 
   // GET /repos/:owner/:repo/languages
@@ -50,6 +52,7 @@ export class UsersService {
       + repo.owner.login
       + '/'
       + repo.name
-      + '/languages');
+      + '/languages',
+      {responseType: 'text'});
   }
 }
