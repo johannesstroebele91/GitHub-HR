@@ -1,11 +1,9 @@
 {
   "name": "githubuser-dashboard",
-  "main": "server.js",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "run": "ng serve --port 4800",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -33,8 +31,7 @@
     "hammerjs": "~2.0.8",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "express": "latest"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.5",
