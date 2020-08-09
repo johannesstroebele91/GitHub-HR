@@ -11,6 +11,7 @@ import {UsersService} from '../services/users.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatIconModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]

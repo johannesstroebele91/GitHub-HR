@@ -1,23 +1,57 @@
 <div class="container-fluid content">
 
+  <!-- COMPARE ANOTHER USER -->
+
   <form action="">
-    <h1>Search</h1>
-    <div>
-      <label for="search">Search</label>
-      <input type="text" id="search" placeholder="Search GitHub users with username"
+    <h1 *ngIf="!user">Search User by Name</h1>
+    <h1 *ngIf="user">Decide</h1>
+
+    <!-- Adapt you search -->
+    <p *ngIf="user">Adapt you search</p>
+    <div class="searchbar">
+      <label for="search"></label>
+      <input type="text" id="search" placeholder="Adapt you search"
              [(ngModel)]="username" name="username">
-      <button (click)="searchUsername()">Search</button>
+      <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
     </div>
+
+    <!-- or compare user wither another one -->
+    <p *ngIf="user">...or compare user wither another one</p>
+    <div *ngIf="user" class="searchbar">
+      <label for="searchAnotherUser"></label>
+      <input type="text" id="searchAnotherUser" placeholder="...or compare user wither another one"
+             [(ngModel)]="username" name="username">
+      <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
+    </div>
+
+    <!-- TODO fix show search error
     <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="text-login-error">Username
       is invalid. Try again.
+    </div>-->
+
+    <!-- Search Results for First User -->
+    <div *ngIf="!user">
+      <h2>Last Searches</h2>
+      <ul>
+        <li><a href="/">johannesstroebele91</a></li>
+        <li><a href="/">Krymonota</a></li>
+        <li><a href="/">moritzgvt</a></li>
+      </ul>
+      <h2>Why GitHub HR Can Help You</h2>
+      <p>This dashboard helps you with the technical screening
+        of the GitHub portfolio for software development job applicants.
+        It gives detailed insights not only in each repository,
+        but for their profile overall. Further, the profile can be compared
+        with other GitHub users to compare them easily.</p>
     </div>
 
   </form>
 
-  <!-- User data -->
+  <!-- Search Results for First User -->
   <div *ngIf="user">
-    <h1>{{user.name}}</h1>
-    <h2>{{user.login}}</h2>
+    <h2>User Data</h2>
+    <h2>{{user.name}}</h2>
+    <h3>{{user.login}}</h3>
     <img width="100" src="{{user.avatar_url}}" alt="">
     <ul>
       <li *ngIf="user.company">Works at {{user.company}}</li>
