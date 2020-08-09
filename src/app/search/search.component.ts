@@ -32,19 +32,19 @@ export class SearchComponent {
     // Gets respective searched user data from service
     // Subscription to function necessary, because it returns an observable
     this.usersService.getUserData().subscribe(data => {
-      console.log('getUserData() ');
-      console.log(data);
+      // console.log('getUserData() ');
+      // console.log(data);
       this.user = data;
     });
 
     // Gets respective searched data about user's repos from service
     this.usersService.getUserReposData().subscribe(repositories => {
-      console.log('getUserReposData() ');
-      console.log(repositories);
+      // console.log('getUserReposData() ');
+      // console.log(repositories);
       this.repos = repositories;
       this.usersService.getUserRepoLanguagesData(this.repos[0]).subscribe(languages => {
-        console.log('getUserRepoLanguagesData(repo) ' );
-        console.log(languages);
+        // console.log('getUserRepoLanguagesData(repo) ' );
+        // console.log(languages);
         this.languagesPerRepo.push(languages);
         // filterLanguages(languages);
       });
