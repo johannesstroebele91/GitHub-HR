@@ -1,7 +1,7 @@
 <div class="container-fluid content">
 
   <!-- COMPARE ANOTHER USER -->
-
+  <div>vasdasdasd</div>
   <form action="">
     <h1 *ngIf="!user">Search User by Name</h1>
     <h1 *ngIf="user">Decide</h1>
@@ -50,32 +50,33 @@
   <!-- Search Results for First User -->
   <div *ngIf="user">
     <h2>User Data</h2>
-    <h2>{{user.name}}</h2>
-    <h3>{{user.login}}</h3>
-    <img width="100" src="{{user.avatar_url}}" alt="">
-    <ul>
-      <li *ngIf="user.company">Works at {{user.company}}</li>
-      <li *ngIf="user.location">Works at {{user.location}}</li>
-      <li *ngIf="user.bio">Works at {{user.bio}}</li>
-      <li *ngIf="user.hireable">Works at {{user.hireable}}</li>
-      <li *ngIf="user.blog">Works at {{user.blog}}</li>
-      <li *ngIf="user.email">Works at {{user.email}}</li>
-    </ul>
-    <div>
-      <!-- Repos data -->
+      <h2>{{user.name}}</h2>
+      <h3>{{user.login}}</h3>
+      <img width="100" src="{{user.avatar_url}}" alt="">
+      <ul>
+        <li *ngIf="user.company">Works at {{user.company}}</li>
+        <li *ngIf="user.location">Works at {{user.location}}</li>
+        <li *ngIf="user.bio">Works at {{user.bio}}</li>
+        <li *ngIf="user.hireable">Works at {{user.hireable}}</li>
+        <li *ngIf="user.blog">Works at {{user.blog}}</li>
+        <li *ngIf="user.email">Works at {{user.email}}</li>
+      </ul>
+      <div>
+      <!--
+      Repos data
       <h3>Repositories</h3>
       <div fxLayout="row" *ngFor="let repo of repos">
         <a href="{{repo.html_url}}">{{repo.name}}</a>
         <p>{{repo.description}}</p>
-        <!-- Language Container -->
+         Language Container
         <div fxFlex="50" fxLayout="row" *ngFor="let language of languagesPerRepo">
           <ng-container *ngFor="let languageItem of language | keyvalue">
-            <!-- Language Item -->
+            Language Item
             <p class="color-red">{{languageItem.key}}</p>
             <p class="color-blue">{{languageItem.value}}</p>
           </ng-container>
         </div>
-      </div>
+      </div>-->
       <div>
       </div>
     </div>

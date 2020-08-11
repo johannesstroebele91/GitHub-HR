@@ -24,9 +24,9 @@ export class UsersService {
     return this.http.get('/userapi'
       + '/'
       + this.username
-      + '?client_id='
+      + '?client_id={'
       + this.clientId
-      + '?client_secret='
+      + '}?client_secret='
       + this.clientSecret);
   }
 
