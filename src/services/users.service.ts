@@ -8,9 +8,6 @@ import {Observable} from 'rxjs';
 })
 export class UsersService {
 
-  private readonly githubApiEndpoint = '/userapi';
-
-
   private username = 'johannesstroebele91';
   private clientId = 'a3b037c468909cdc00c5';
   private clientSecret = '40b1f3890764ef7553d2c87ae3a284231d0ab6a8';
@@ -24,7 +21,7 @@ export class UsersService {
 
   // Gets data from GitHub API of the respective user
   getUserData(): Observable<any> {
-    return this.http.get('/userapi'
+    return this.http.get('/githubapi/users'
       + '/'
       + this.username
       + '?client_id={'
@@ -35,7 +32,7 @@ export class UsersService {
 
   // GET /users/:username/repos
   getUserReposData(): Observable<any> {
-    return this.http.get('/userapi'
+    return this.http.get('/githubapi/users'
       + '/'
       + this.username
       + '/repos'
@@ -48,7 +45,7 @@ export class UsersService {
   // GET /repos/:owner/:repo/languages
   // https://api.github.com/repos/johannesstroebele91/Angular_Knowledge/languages
   getUserRepoLanguagesData(repo: any): Observable<any> {
-    return this.http.get('/languagesapi'
+    return this.http.get('/githubapi/languages'
       + '/'
       + repo.owner.login
       + '/'

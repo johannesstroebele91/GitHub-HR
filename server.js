@@ -1,33 +1,27 @@
 const express = require('express');
 const path = require('path');
+const {createProxyMiddleware} = require('http-proxy-middleware');
 const app = express();
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
-app.use(express.static('./dist/githubuser-dashboard'));
+// localhost:8080/githubapi/users/octocat -> https://api.github.com/users/octocat
+const proxyOptions = {
+  target: 'https://api.github.com',
+  changeOrigin: true,
+  ws: true,
+  pathRewrite: {
+    '^/githubapi': '',
+  }
+};
 
 // Add middleware for http proxying
-const apiProxy = createProxyMiddleware('/userapi', { target: 'https://api.github.com'});
-app.use('/userapi', apiProxy);
+const apiProxy = createProxyMiddleware(proxyOptions);
+app.use('/githubapi/*', apiProxy);
 
-// Render your site
-app.get('/', function (req, res) {
+// Static files
+app.use(express.static('./dist/githubuser-dashboard'));
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/githubuser-dashboard/index.html'));
 });
-
-app.listen(process.env.PORT || 8080);
-console.log(`Running on port ${process.env.PORT || 8080}`);
-
-/*
-const axios = require('axios');
-
-axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
-  .then(response => {
-    console.log(response.data.url);
-  })
-  .catch(error => {
-    console.log(error);
-  });
- */
 
 app.listen(process.env.PORT || 8080);
 

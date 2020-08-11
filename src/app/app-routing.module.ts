@@ -1,9 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {SearchComponent} from './search/search.component';
+import {LoginComponent} from './login/login.component';
 
-const routes: Routes = [
-  {path: '', component: SearchComponent},
+export const routes: Routes = [
+  {path: '', component: LoginComponent},
+  {path: 'home', component: SearchComponent},
 ];
 
 @NgModule({

@@ -1,43 +1,83 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$githubuser-dashboard-primary: mat-palette($mat-indigo);
-$githubuser-dashboard-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$githubuser-dashboard-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$githubuser-dashboard-theme: mat-light-theme($githubuser-dashboard-primary, $githubuser-dashboard-accent, $githubuser-dashboard-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($githubuser-dashboard-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
+/* General */
+body, .article {
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1em;
+  color: #4b4b4b;
+  line-height: 1.27777778em;
+  margin: 0 auto;
+}
+h1, .h1 {
+  font-size: 3em;
+  line-height: 1.21052632em;
+  margin-bottom: 0.60526316em;
+  font-weight: bold !important;
+  color: #5c5c5c;
+}
+h2, .h2 {
+  font-size: 2.61111111em;
+  line-height: 1.46808511em;
+  margin-top: 0.4893617em;
+  margin-bottom: 0.4893617em;
+  font-weight: bold !important;
+  color: #5c5c5c;
+}
+h3, .h3 {
+  font-size: 1.61111111em;
+  line-height: 1.5862069em;
+  margin-top: 0.79310345em;
+  margin-bottom: 0;
+}
+h4, .h4 {
+  font-size: 1em;
+  line-height: 1.27777778em;
+  margin-top: 1.27777778em;
+  margin-bottom: 0;
+}
+h5, .h5 {
+  font-size: 1em;
+  line-height: 1.27777778em;
+  margin-top: 1.27777778em;
+  margin-bottom: 0;
+}
+p, ul, ol, pre, table, blockquote {
+  line-height: 1.5em;
+  margin-top: 0;
+  margin-bottom: 1.27777778em;
+  padding-bottom: 1em;
+}
+ul ul, ol ol, ul ol, ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-h1, h2, h3, h4 {
-  padding-top: 24px;
-  margin: 0;
-  color: #292929;
+/* Let's make sure all's aligned */
+hr, .hr {
+  border: 1px solid;
+  margin: -1px 0;
+}
+a, b, i, strong, em, small, code {
+  line-height: 0;
+}
+sub, sup {
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+/* Interactive Elements*/
+.button-color {
+  display: block;
+  background: #007bff;
+  padding: 12px 36px;
+  margin: 24px 0 6px 0;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  white-space: nowrap;
 }

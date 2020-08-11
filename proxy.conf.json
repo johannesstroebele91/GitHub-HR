@@ -1,17 +1,9 @@
 {
-  "/userapi/*": {
-    "target": "https://api.github.com/users",
+  "/githubapi/*": {
+    "target": "https://api.github.com",
     "secure": false,
     "pathRewrite": {
-      "^/userapi": ""
-    },
-    "changeOrigin": true
-  },
-  "/languagesapi/*": {
-    "target": "https://api.github.com/repos",
-    "secure": false,
-    "pathRewrite": {
-      "^/languagesapi": ""
+      "^/githubapi": ""
     },
     "changeOrigin": true
   }
