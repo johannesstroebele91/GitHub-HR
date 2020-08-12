@@ -1,28 +1,32 @@
 <!-- Default form login -->
-<form (ngSubmit)="onSubmit()" #heroForm="ngForm" #heroForm="ngForm" class="text-center border border-light p-5 form-width">
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm" #heroForm="ngForm" class="container text-center form-width">
 
-  <h1 class="mb-3">Welcome!</h1>
-  <p class="mb-1"><b>Why GitHub HR Can Help You</b></p>
-  <p>This application helps you with the technical screening
-    of the GitHub portfolio for software development job applicants.
-    It gives detailed insights not only into each repository,
-    but for their profile overall. Further, users can be compared easily.</p>
+  <h1 class="mt-4 mb-2">Welcome!</h1>
+  <h3 class="mb-2"><b>Why GitHub HR Can Help You</b></h3>
+  <ul class="text-left">
+    <li>GitHub HR helps you with the technical screening of GitHub users</li>
+    <li>Gives detailed insights into their overall profile, but also each repository</li>
+    <li>Users can be compared easily</li>
+  </ul>
 
 
   <!-- Email -->
-  <label for="email">E-mail (test: test@gmail.com)</label>
+  <label for="email" class="algin-left">E-mail (test: test@gmail.com)</label>
   <input type="email" id="email" [(ngModel)]="testLogin.email" #email="ngModel" name="email" class="form-control mb-4" placeholder="E-mail" required>
   <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
     E-Mail is required
   </div>
 
   <!-- Password -->
-  <label for="password">Password (test: password)</label>
+  <label for="password" class="algin-left">Password (test: password)</label>
   <input type="password" id="password" [(ngModel)]="testLogin.password" #password="ngModel" name="password" class="form-control mb-4" placeholder="Password">
   <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
     Password is required
   </div>
 
+  <!-- Sign in button -->
+  <button class="btn button-color btn-block my-4" type="submit" (click)="onSubmit()">Sign in</button>
+  <p *ngIf="showSubmitError" class="submit-error">Your inserted login credentials are wrong. Please try again</p>
   <div class="d-flex justify-content-around">
     <div>
       <!-- Remember me -->
@@ -37,16 +41,8 @@
     </div>
   </div>
 
-  <!-- Sign in button -->
-  <button class="btn button-color btn-block my-4" type="submit" (click)="onSubmit()">Sign in</button>
-  <p *ngIf="showSubmitError" class="submit-error">Your inserted login credentials are wrong. Please try again</p>
-  <!-- Register -->
-  <p>Not a member?
-    <a href="">Register</a>
-  </p>
-
   <!-- Social login -->
-  <p>Alternatively, you can sign in with:</p>
+  <p class="mt-2">Not a member? <a href="">Register</a>! Or  sign in with:</p>
 
   <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f"></i></a>
   <a href="#" class="mx-2" role="button"><i class="fab fa-twitter"></i></a>
