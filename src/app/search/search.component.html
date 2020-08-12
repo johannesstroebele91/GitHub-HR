@@ -1,91 +1,93 @@
-<div class="container-fluid content">
-
-  <!-- COMPARE ANOTHER USER -->
-  <form action="">
-    <h1 *ngIf="!user">Search User by Name</h1>
-    <h1 *ngIf="user">Decide</h1>
-
-    <!-- Adapt you search -->
-    <p *ngIf="user">Adapt you search</p>
-    <div class="searchbar">
+<!-- Navigation -->
+<nav class="d-flex align-items-center justify-content-between mx-2 my-1">
+  <div class="d-flex align-items-center w-100">
+    <!-- Logo -->
+    <a routerLink="/"><img class="logo logo-mobile mt-2" src="../../assets/logo-mobile.png" alt="logo" height="51"></a>
+    <a routerLink="/"><img class="logo logo-desktop mt-2" src="../../assets/logo-desktop.png" alt="logo"
+                           height="51"></a>
+    <!-- Search bar -->
+    <div class="search-bar">
       <label for="search"></label>
-      <input type="text" id="search" placeholder="Adapt you search"
-             [(ngModel)]="username" name="username">
+      <input type="text" id="search" placeholder="Search by username"
+             [(ngModel)]="username" name="username" (keyup.enter)="searchUsername()">
       <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
     </div>
+  </div>
+  <!-- User -->
+  <div class="nav-user">
+    <span class="user-name-display"><b>Lisa Musterfrau</b></span>
+    <a routerLink="/"><img id="nav-profile-mobile" src="../../assets/Lisa_Avatar.png" alt="Profile image"
+                           width="51"></a>
+  </div>
+</nav>
 
-    <div style="display: block">
-      <canvas mdbChart
-              [chartType]="chartType"
-              [datasets]="chartDatasets"
-              [labels]="chartLabels"
-              [colors]="chartColors"
-              [options]="chartOptions"
-              [legend]="true">
-              <!-- TODO: rework or delete later
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"-->
-      </canvas>
+<div class="content">
+
+  <!-- Popular Searches -->
+  <div *ngIf="!user">
+    <h2>Popular Searches</h2>
+    <p>These are GitHub usernames that were searched before. You can search them by
+      clicking on the link below:</p>
+    <div class="search-options">
+      <div class="mb-2">
+        <mat-icon (click)="searchUsername('johannesstroebele91')" aria-hidden="false" aria-label="Search icon">
+          search
+        </mat-icon>
+        <a (click)="searchUsername('johannesstroebele91')">johannesstroebele91</a>
+      </div>
+      <div class="mb-2">
+        <mat-icon (click)="searchUsername('Krymonota')" aria-hidden="false" aria-label="Search icon">search</mat-icon>
+        <a (click)="searchUsername('Krymonota')">Krymonota</a>
+      </div>
+      <div>
+        <mat-icon (click)="searchUsername('moritzgvt')" aria-hidden="false" aria-label="Search icon">search</mat-icon>
+        <a (click)="searchUsername('moritzgvt')">moritzgvt</a>
+      </div>
     </div>
+  </div>
 
-
-    <!-- or compare user wither another one -->
-    <p *ngIf="user">...or compare user wither another one</p>
-    <div *ngIf="user" class="searchbar">
-      <label for="searchAnotherUser"></label>
-      <input type="text" id="searchAnotherUser" placeholder="...or compare user wither another one"
-             [(ngModel)]="username" name="username">
-      <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
-    </div>
-
-    <!-- TODO fix show search error
-    <div [ngClass]="{'visible' : showLoginError, 'hidden': !showLoginError}" class="text-login-error">Username
-      is invalid. Try again.
-    </div>-->
-
-    <!-- Search Results for First User -->
-    <div *ngIf="!user">
-      <h2>Last Searches</h2>
-      <ul>
-        <li><a (click)="searchUsername('johannesstroebele91')">johannesstroebele91</a></li>
-        <li><a (click)="searchUsername('Krymonota')">Krymonota</a></li>
-        <li><a (click)="searchUsername('moritzgvt')">moritzgvt</a></li>
-      </ul>
-    </div>
-
-  </form>
-
-  <!-- Search Results for First User -->
+  <!-- Results -->
   <div *ngIf="user">
-    <h2>User Data</h2>
-      <h2>{{user.name}}</h2>
-      <h3>{{user.login}}</h3>
-      <img width="100" src="{{user.avatar_url}}" alt="">
-      <ul>
-        <li *ngIf="user.company">Works at {{user.company}}</li>
-        <li *ngIf="user.location">Works at {{user.location}}</li>
-        <li *ngIf="user.bio">Works at {{user.bio}}</li>
-        <li *ngIf="user.hireable">Works at {{user.hireable}}</li>
-        <li *ngIf="user.blog">Works at {{user.blog}}</li>
-        <li *ngIf="user.email">Works at {{user.email}}</li>
-      </ul>
-      <div>
-      Repos data
-      <h3>Repositories</h3>
-      <div fxLayout="row" *ngFor="let repo of repos">
-        <a href="{{repo.html_url}}">{{repo.name}}</a>
-        <p>{{repo.description}}</p>
-         Language Container
-        <div fxFlex="50" fxLayout="row" *ngFor="let language of languagesPerRepo">
-          <ng-container *ngFor="let languageItem of language | keyvalue">
-            Language Item
-            <p class="color-red">{{languageItem.key}}</p>
-            <p class="color-blue">{{languageItem.value}}</p>
-          </ng-container>
+
+    <h2>{{user.name}}</h2>
+    <button class="button-blue link-github-portfolio" (click)="linktouser(user.html_url)">Visit GitHub Profile</button>
+
+    <!-- Tabs -->
+    <mat-tab-group animationDuration="0ms">
+      <mat-tab label="Overall">
+        <div class="my-3 d-flex justify-content-between align-items-center">
+          <ul>
+            <li *ngIf="user.login">Username: {{user.login}}</li>
+            <li *ngIf="user.company">Company: {{user.company}}</li>
+            <li *ngIf="user.location">Location: {{user.location}}</li>
+            <li *ngIf="user.hireable">Hireable: {{user.hireable}}</li>
+            <li *ngIf="user.blog">Website: {{user.blog}}</li>
+            <li *ngIf="user.email">Email: {{user.email}}</li>
+            <li *ngIf="user.public_repos">Repos: {{user.public_repos}}</li>
+            <li *ngIf="user.public_gists">Gists: {{user.public_gists}}</li>
+            <li *ngIf="user.followers">Followers: {{user.followers}}</li>
+            <li *ngIf="user.following">Following: {{user.following}}</li>
+          </ul>
+          <img height="180" src="{{user.avatar_url}}" alt="GitHub profile picture" class="border-2 border-light rounded mb-0">
         </div>
-      </div>
-      <div>
-      </div>
-    </div>
+        <p *ngIf="user.bio">{{user.bio}}</p>
+      </mat-tab>
+      <mat-tab label="Repos">
+        <h2>Repositories</h2>
+        <mat-card *ngFor="let repo of repos" class="my-2">
+          <div><a href="{{repo.html_url}}">{{repo.name}}</a></div>
+          <p>{{repo.description}}</p>
+          <div fxFlex="50" fxLayout="row" *ngFor="let language of languagesPerRepo">
+            <ng-container *ngFor="let languageItem of language | keyvalue">
+              <p class="color-red">{{languageItem.key}}</p>
+              <p class="color-blue">{{languageItem.value}}</p>
+            </ng-container>
+          </div>
+        </mat-card>
+      </mat-tab>
+      <mat-tab label="Analysis">
+        <div></div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

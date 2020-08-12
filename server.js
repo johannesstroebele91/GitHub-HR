@@ -20,7 +20,7 @@ app.use('/githubapi/*', apiProxy);
 
 // Serving static files
 app.use(express.static('./dist/githubuser-dashboard'));
-app.get('/*', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/githubuser-dashboard/index.html'));
 });
 

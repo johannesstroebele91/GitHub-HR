@@ -28,18 +28,36 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/animate.css/animate.css",
-              "./node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
-              "./node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
-              "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
-              "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
-              "./node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
-              "./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              {
+                "input": "./node_modules/animate.css/animate.css"
+              },
+              {
+                "input": "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss"
+              },
+              {
+                "input": "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss"
+              },
+              {
+                "input": "./node_modules/@fortawesome/fontawesome-free/scss/regular.scss"
+              },
+              {
+                "input": "./node_modules/@fortawesome/fontawesome-free/scss/brands.scss"
+              },
+              {
+                "input": "./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"
+              },
+              {
+                "input": "./node_modules/angular-bootstrap-md/assets/scss/mdb.scss"
+              },
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/chart.js/dist/Chart.js",
-              "./node_modules/hammerjs/hammer.min.js"
+              {
+                "input": "./node_modules/chart.js/dist/Chart.js"
+              },
+              {
+                "input": "./node_modules/hammerjs/hammer.min.js"
+              }
             ]
           },
           "configurations": {

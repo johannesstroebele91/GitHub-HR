@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 /* General */
 body, .article {
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -6,46 +8,50 @@ body, .article {
   line-height: 1.27777778em;
   margin: 0 auto;
 }
+
 h1, .h1 {
-  font-size: 3em;
-  line-height: 1.21052632em;
-  margin-bottom: 0.60526316em;
+  font-size: 3em !important;
+  line-height: 1.2em !important;
+  margin-top: 0.6em !important;
+  margin-bottom: 0.45em !important;
   font-weight: bold !important;
-  color: #5c5c5c;
+  color: #5c5c5c !important;
 }
+
 h2, .h2 {
-  font-size: 2.61111111em;
-  line-height: 1.46808511em;
-  margin-top: 0.4893617em;
-  margin-bottom: 0.4893617em;
+  font-size: 2.61111111em !important;
+  line-height: 1.46808511em !important;
+  margin-top: 0.45em !important;
+  margin-bottom: 0.3em !important;
   font-weight: bold !important;
-  color: #5c5c5c;
+  color: #5c5c5c !important;
 }
+
 h3, .h3 {
-  font-size: 1.61111111em;
-  line-height: 1.5862069em;
-  margin-top: 0.79310345em;
-  margin-bottom: 0;
+  font-size: 1.61111111em !important;
+  line-height: 1.5862069em !important;
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
+  color: #5c5c5c !important;
 }
-h4, .h4 {
-  font-size: 1em;
-  line-height: 1.27777778em;
-  margin-top: 1.27777778em;
-  margin-bottom: 0;
+
+h4, .h4, h5, .h5 {
+  font-size: 1em !important;
+  line-height: 1.27777778em !important;
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
 }
-h5, .h5 {
-  font-size: 1em;
-  line-height: 1.27777778em;
-  margin-top: 1.27777778em;
-  margin-bottom: 0;
-}
-p, ul, ol, pre, table, blockquote {
-  line-height: 1.5em;
+
+p, ul, ol, pre, table, blockquote, label {
+  line-height: 1.6em!important;
+  font-size: 1.1em!important;
   margin-top: 0;
-  margin-bottom: 1.27777778em;
-  padding-bottom: 1em;
+  margin-bottom: 0.9em;
 }
+
 ul ul, ol ol, ul ol, ol ul {
+  line-height: 1.6em!important;
+  font-size: 1.1em!important;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -55,29 +61,48 @@ hr, .hr {
   border: 1px solid;
   margin: -1px 0;
 }
+
 a, b, i, strong, em, small, code {
+  font-size: 1.1em!important;
   line-height: 0;
 }
+
 sub, sup {
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
+
 sup {
   top: -0.5em;
 }
+
 sub {
   bottom: -0.25em;
 }
 
 /* Interactive Elements*/
-.button-color {
-  display: block;
-  background: #007bff;
-  padding: 12px 36px;
+.button-blue {
+  display: inline-block;
+  padding: 12px 24px;
   margin: 24px 0 6px 0;
-  border-radius: 3px;
-  color: white;
-  border: none;
   white-space: nowrap;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 3px;
+  border: none;
+  background: #007bff;
+  color: white;
+}
+
+.button-white {
+  display: inline-block;
+  text-align: center;
+  padding: 12px 24px;
+  font-weight: 500;
+  border-radius: 3px;
+  border: 3px solid #007bff;
+  background: white;
+  margin: 6px 0;
+  color: #007bff;
 }

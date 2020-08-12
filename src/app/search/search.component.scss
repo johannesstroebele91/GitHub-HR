@@ -1,7 +1,98 @@
-.text-login-error {
-  color: red;
+// Navigation
+.nav-user {
+  white-space: nowrap
 }
 
+.user-name-display {
+  font-weight: 300;
+  margin-right: 12px;
+}
+
+@media only screen and (max-width: 767.98px) {
+
+  .search-bar {
+    width: 100% !important;
+  }
+  .user-name-display {
+    display: none;
+  }
+  .logo-mobile {
+    display: inline-block;
+  }
+  .logo-desktop {
+    display: none;
+  }
+  .content {
+    padding: 0 3%;
+  }
+  .link-github-portfolio {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  .search-bar {
+    min-width: 60% !important;
+  }
+  .logo-mobile {
+    display: none;
+  }
+  .logo-desktop {
+    display: inline-block;
+  }
+  .content {
+    padding: 0 3%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .content {
+    position: relative;
+    left: 150px;
+  }
+}
+
+.search-bar {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+  padding: 3px;
+  margin: 0 24px;
+  font-weight: 500;
+  border-radius: 3px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.search-bar input {
+  border-radius: 2px;
+  width: 100%;
+  border: none;
+}
+
+.search-bar mat-icon {
+  margin: 6px 6px 6px 12px;
+}
+
+.search-options > div > a {
+  font-weight: bold;
+}
+
+.search-options > div > mat-icon {
+  color: grey;
+  position: relative;
+  top: 6px;
+  margin-right: 6px;
+}
+
+// Search results
 .color-red {
   color: red;
 }
@@ -10,60 +101,7 @@
   color: #007bff;
 }
 
-.content {
-  max-width: 900px;
-  margin: 0 auto;
+// General
+.mat-tab-group {
+  margin-bottom: 48px;
 }
-
-.button-blue {
-  display: inline-block;
-  text-align: center;
-  padding: 12px 24px;
-  font-weight: 500;
-  border-radius: 3px;
-  border: none;
-  background: #007bff;
-  color: white;
-}
-
-.button-white {
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-  padding: 12px 24px;
-  font-weight: 500;
-  border-radius: 3px;
-  border: 3px solid #007bff;
-  background: white;
-  margin: 6px 0;
-  color: #007bff;
-}
-
-
-.searchbar {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
-  padding: 3px;
-  margin-bottom: 6px;
-  font-weight: 500;
-  border-radius: 3px;
-  border: none;
-  background: #007bff;
-  color: white;
-}
-
-.searchbar input {
-  border-radius: 2px;
-  width: 100%;
-  border: none;
-}
-
-.searchbar mat-icon {
-  margin: 6px 6px 6px 12px;
-}
-
-

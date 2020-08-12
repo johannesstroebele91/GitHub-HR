@@ -9,7 +9,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "aot:build": "ng build --prod --sm=false --aot=true --output-path=dist --build-optimizer=false",
+    "pre-commit": "ng lint",
+    "preinstall": "npm install -g http-server",
+    "postinstall": "ng build --aot --target=production && mv dist/* ."
   },
   "private": true,
   "dependencies": {
@@ -24,10 +28,10 @@
     "@angular/platform-browser": "~9.0.5",
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
-    "@fortawesome/fontawesome-free": "~5.6.3",
-    "@types/chart.js": "^2.7.40",
+    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@types/chart.js": "^2.9.23",
     "angular-bootstrap-md": "^9.3.1",
-    "animate.css": "~3.7.2",
+    "animate.css": "^3.7.2",
     "axios": "^0.19.2",
     "chart.js": "^2.5.0",
     "cors": "^2.8.5",

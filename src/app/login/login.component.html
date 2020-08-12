@@ -1,14 +1,15 @@
 <!-- Default form login -->
 <form (ngSubmit)="onSubmit()" #heroForm="ngForm" #heroForm="ngForm" class="container text-center form-width">
 
-  <h1 class="mt-4 mb-2">Welcome!</h1>
-  <h3 class="mb-2"><b>Why GitHub HR Can Help You</b></h3>
+  <!-- TODO remove router link after development (only for testing) -->
+  <a routerLink="/home"><img class="logo mt-2" src="../../assets/logo-desktop.png" alt="logo" width="150"></a>
+  <h1>Welcome!</h1>
+  <h3>Why GitHub HR Can Help You</h3>
   <ul class="text-left">
-    <li>GitHub HR helps you with the technical screening of GitHub users</li>
-    <li>Gives detailed insights into their overall profile, but also each repository</li>
-    <li>Users can be compared easily</li>
+    <li>Supports the technical screening of GitHub users</li>
+    <li>Gives detailed insights into their overall profile as well as each repository</li>
+    <li>Users can be compared with others easily</li>
   </ul>
-
 
   <!-- Email -->
   <label for="email" class="algin-left">E-mail (test: test@gmail.com)</label>
@@ -25,7 +26,7 @@
   </div>
 
   <!-- Sign in button -->
-  <button class="btn button-color btn-block my-4" type="submit" (click)="onSubmit()">Sign in</button>
+  <button class="btn button-blue btn-block my-4" type="submit" (click)="onSubmit()">Sign in</button>
   <p *ngIf="showSubmitError" class="submit-error">Your inserted login credentials are wrong. Please try again</p>
   <div class="d-flex justify-content-around">
     <div>

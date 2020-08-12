@@ -9,15 +9,15 @@ import {SearchComponent} from './search/search.component';
 import {UsersService} from '../services/users.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import {NavbarComponent} from './navbar/navbar.component';
 import {MatIconModule} from '@angular/material/icon';
 import {LoginComponent} from './login/login.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    NavbarComponent,
     LoginComponent
   ],
   imports: [
@@ -29,7 +29,9 @@ import {LoginComponent} from './login/login.component';
     ReactiveFormsModule,
     FormsModule,
     MDBBootstrapModule.forRoot(),
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatCardModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [UsersService],
