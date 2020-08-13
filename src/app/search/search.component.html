@@ -25,9 +25,8 @@
 
   <!-- Popular Searches -->
   <div *ngIf="!user">
-    <h2>Popular Searches</h2>
-    <p>These are GitHub usernames that were searched before. You can search them by
-      clicking on the link below:</p>
+    <h2>Last Searches</h2>
+    <p>These are GitHub usernames that you searched before. Click on one of the links to redo your search:</p>
     <div class="search-options">
       <div class="mb-2">
         <mat-icon (click)="searchUsername('johannesstroebele91')" aria-hidden="false" aria-label="Search icon">
@@ -49,26 +48,68 @@
   <!-- Results -->
   <div *ngIf="user">
 
-    <h2>{{user.name}}</h2>
-    <button class="button-blue link-github-portfolio" (click)="linktouser(user.html_url)">Visit GitHub Profile</button>
+    <div class="username-and-githublink">
+      <h2>{{user.name}}</h2>
+      <button class="button-blue link-github-portfolio" (click)="linkToWebsite(user.html_url)">Visit GitHub Profile
+      </button>
+    </div>
 
     <!-- Tabs -->
     <mat-tab-group animationDuration="0ms">
       <mat-tab label="Overall">
-        <div class="my-3 d-flex justify-content-between align-items-center">
-          <ul>
-            <li *ngIf="user.login">Username: {{user.login}}</li>
-            <li *ngIf="user.company">Company: {{user.company}}</li>
-            <li *ngIf="user.location">Location: {{user.location}}</li>
-            <li *ngIf="user.hireable">Hireable: {{user.hireable}}</li>
-            <li *ngIf="user.blog">Website: {{user.blog}}</li>
-            <li *ngIf="user.email">Email: {{user.email}}</li>
-            <li *ngIf="user.public_repos">Repos: {{user.public_repos}}</li>
-            <li *ngIf="user.public_gists">Gists: {{user.public_gists}}</li>
-            <li *ngIf="user.followers">Followers: {{user.followers}}</li>
-            <li *ngIf="user.following">Following: {{user.following}}</li>
-          </ul>
-          <img height="180" src="{{user.avatar_url}}" alt="GitHub profile picture" class="border-2 border-light rounded mb-0">
+        <div class="userinfo-and-avatar my-3">
+          <div class="user-infos">
+            <div *ngIf="user.login">
+              <mat-icon aria-hidden="false" aria-label="Person icon">person</mat-icon>
+              <span>Username: {{user.login}}</span>
+            </div>
+            <div *ngIf="user.company">
+              <mat-icon aria-hidden="false" aria-label="Company icon">business</mat-icon>
+              <span>Company: {{user.company}}</span>
+            </div>
+            <div *ngIf="user.location">
+              <mat-icon aria-hidden="false" aria-label="Location icon">location_on</mat-icon>
+              <span>Location: {{user.location}}</span>
+            </div>
+            <div *ngIf="user.hireable">
+              <mat-icon aria-hidden="false" aria-label="Work icon">work</mat-icon>
+              <span>Hireable: {{user.hireable}}</span>
+            </div>
+            <div *ngIf="user.blog" (click)="linkToWebsite(user.html_url)">
+              <mat-icon aria-hidden="false" aria-label="Homepage icon">web</mat-icon>
+              <span>Visit website: <a>{{user.blog}}</a></span>
+            </div>
+            <div *ngIf="user.email" (click)="linkToEmail(user.email)">
+              <mat-icon aria-hidden="false" aria-label="Email icon">email</mat-icon>
+              <span>Send email: <a>{{user.email}}</a></span>
+            </div>
+            <div *ngIf="user.public_repos">
+              <mat-icon aria-hidden="false" aria-label="Repos icon">dns</mat-icon>
+              <span>Visit repos: {{user.public_repos}}</span>
+            </div>
+            <div *ngIf="user.public_gists">
+              <mat-icon aria-hidden="false" aria-label="Gists icon">text_snippet</mat-icon>
+              <span>Visit gists: {{user.public_gists}}</span>
+            </div>
+            <div *ngIf="user.followers">
+              <mat-icon aria-hidden="false" aria-label="Followers icon">people</mat-icon>
+              <span>Followers: {{user.followers}}</span>
+            </div>
+            <div *ngIf="user.following">
+              <mat-icon aria-hidden="false" aria-label="Following icon">people</mat-icon>
+              <span>Following: {{user.following}}</span>
+            </div>
+            <div *ngIf="user.created_at">
+              <mat-icon aria-hidden="false" aria-label="Date joined icon">query_builder</mat-icon>
+              <span>Joined GitHub: {{user.created_at}}</span>
+            </div>
+            <div *ngIf="user.updated_at">
+              <mat-icon aria-hidden="false" aria-label="Date joined icon">update</mat-icon>
+              <span>Updated profile: {{user.updated_at}}</span>
+            </div>
+          </div>
+          <img height="180" (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture"
+               class="border-2 border-light rounded mb-0" src="{{user.avatar_url}}">
         </div>
         <p *ngIf="user.bio">{{user.bio}}</p>
       </mat-tab>

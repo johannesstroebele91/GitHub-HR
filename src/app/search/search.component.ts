@@ -66,7 +66,11 @@ export class SearchComponent {
       */
   }
 
-  linktouser(userurl: string) {
-    window.open(userurl, '_blank');
+  linkToWebsite(userLink: string) {
+    window.open(userLink, '_blank');
+  }
+
+  linkToEmail(emailLink: string) {
+    window.open('mailto: ' + emailLink, '_blank');
   }
 }

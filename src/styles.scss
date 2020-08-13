@@ -42,7 +42,7 @@ h4, .h4, h5, .h5 {
   margin-bottom: 0.3em !important;
 }
 
-p, ul, ol, pre, table, blockquote, label {
+p, ul, ol, pre, table, blockquote, label, span {
   line-height: 1.6em!important;
   font-size: 1.1em!important;
   margin-top: 0;
@@ -85,7 +85,7 @@ sub {
 .button-blue {
   display: inline-block;
   padding: 12px 24px;
-  margin: 24px 0 6px 0;
+  margin: 12px 0 6px 0;
   white-space: nowrap;
   text-align: center;
   font-weight: 500;
@@ -103,6 +103,6 @@ sub {
   border-radius: 3px;
   border: 3px solid #007bff;
   background: white;
-  margin: 6px 0;
+  margin: 12px 0 6px 0;
   color: #007bff;
 }
