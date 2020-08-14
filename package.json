@@ -9,11 +9,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "aot:build": "ng build --prod --sm=false --aot=true --output-path=dist --build-optimizer=false",
-    "pre-commit": "ng lint",
-    "preinstall": "npm install -g http-server",
-    "postinstall": "ng build --aot --target=production && mv dist/* ."
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
