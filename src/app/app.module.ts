@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {LoginComponent} from './login/login.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {MatCardModule} from '@angular/material/card';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    ChartsModule,
     MDBBootstrapModule.forRoot(),
     MatIconModule,
     MatTabsModule,

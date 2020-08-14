@@ -23,6 +23,50 @@
 
 <div class="content">
 
+  <!-- TODO for testing only, remove later -->
+  <h2>Test Data</h2>
+  <div *ngFor="let obj of dataPieChartReposPerLanguage">
+    <p>{{obj.name}}: {{obj.value}}</p>
+  </div>
+
+  <h2>Repos per Coding Language</h2>
+  <div class="chart">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+    </canvas>
+  </div>
+
+  <h2>Stars per Repository</h2>
+  <div class="chart">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+    </canvas>
+  </div>
+
+  <h2>Commits per Language</h2>
+  <div class="chart">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+    </canvas>
+  </div>
+
+
+
   <!-- Popular Searches -->
   <div *ngIf="!user">
     <h2>Last Searches</h2>
@@ -56,6 +100,8 @@
 
     <!-- Tabs -->
     <mat-tab-group animationDuration="0ms">
+
+      <!-- Tab Overall -->
       <mat-tab label="Overall">
         <div class="userinfo-and-avatar my-3">
           <div class="user-infos">
@@ -113,10 +159,12 @@
         </div>
         <p *ngIf="user.bio">{{user.bio}}</p>
       </mat-tab>
+
+      <!-- Tab Repos -->
       <mat-tab label="Repos">
-        <h2>Repositories</h2>
-        <mat-card *ngFor="let repo of repos" class="my-2">
-          <div><a href="{{repo.html_url}}">{{repo.name}}</a></div>
+        <h2>{{repos.length}} Repositories</h2>
+        <mat-card *ngFor="let repo of repos" class="my-2 mx-1">
+          <a href="{{repo.html_url}}">{{repo.name}}</a>
           <p>{{repo.description}}</p>
           <div fxFlex="50" fxLayout="row" *ngFor="let language of languagesPerRepo">
             <ng-container *ngFor="let languageItem of language | keyvalue">
@@ -126,8 +174,10 @@
           </div>
         </mat-card>
       </mat-tab>
+
+      <!-- Tab Analysis -->
       <mat-tab label="Analysis">
-        <div></div>
+
       </mat-tab>
     </mat-tab-group>
   </div>
