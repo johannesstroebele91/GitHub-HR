@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {User} from '../../models/user';
-import {Language} from '../../models/language';
 import {dataPieChartReposPerLanguage} from './pie-chart-data'; // TODO delete later due to testing data
 import {ChartType, ChartOptions} from 'chart.js';
 import {Label} from 'ng2-charts';
-import {Repo} from '../../models/repo';
+import {Repo, Language} from '../../models/repo';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +16,7 @@ export class SearchComponent {
   // Search Data
   username: string;
   user: User;
-  repos: Repo;
+  repos: Repo[];
   reposAmount = 0;
   languageInRepos: string[] = [];
   languageInReposWithoutDuplicates: string[] = [];
@@ -88,14 +87,38 @@ export class SearchComponent {
       let numberOfLanguageInReposWithoutDuplicatesObj: any;
       numberOfLanguageInReposWithoutDuplicatesObj = this.countRandomStringElementDuplicatesInArray();
       this.numberOfLanguageInReposWithoutDuplicates = Object.values(numberOfLanguageInReposWithoutDuplicatesObj);
-      console.log('numberOfLanguageInReposWithoutDuplicates)');
-      console.log(this.numberOfLanguageInReposWithoutDuplicates);
+
+      // Needed for updating the pie chart
       this.pieChartData = this.numberOfLanguageInReposWithoutDuplicates;
 
+      // Getting the coding languages of each repository
+      this.repos.forEach((repo) => {
+        this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
+
+            repo.languages = [];
+
+            Object.keys(languages).forEach((key) => repo.languages.push({
+                name: key,
+                frequency: languages[key]
+              })
+            );
+            console.log('repo.languages');
+            console.log(repo.languages);
+            console.log(this.repos);
+          }
+        );
+      });
+      console.log('this.repos');
+      console.log(this.repos);
+
+      /* Safe
       this.usersService.getUserRepoLanguagesData(this.repos[0]).subscribe(languages => {
         this.languagesPerRepo.push(languages);
-        // filterLanguages(languages);
+        console.log('languagesPerRepo');
+        console.log(this.languagesPerRepo);
+        filterLanguages(languages);
       });
+      */
     });
     // TODO needs fixing
     /*  filterLanguages(languagesPerRepo: any) {

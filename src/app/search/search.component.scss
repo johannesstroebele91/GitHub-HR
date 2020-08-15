@@ -125,9 +125,30 @@
   border-radius: 3px;
 }
 
+.container-two-columns > div > div > * {
+  display: inline-block;
+}
+.container-two-columns > div > div > .mat-icon{
+  position: relative;
+  top: 6px;
+  margin-right: 6px;
+}
+
+
 // 3. RESPONSIVE
 @media (max-width: 575.98px) {
   .userinfo-and-avatar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+  }
+  .avatar-and-bio {
+    margin-bottom: 18px;
+  }
+  .container-two-columns {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -143,7 +164,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     align-content: stretch;
   }
   .username-and-githublink :first-child {
@@ -157,13 +178,24 @@
     align-items: center;
     align-content: stretch;
   }
-
   .userinfo-and-avatar > div:nth-child(1) {
     width: 42%;
     padding-right: 36px;
   }
   .userinfo-and-avatar > div:nth-child(2) {
     width: 56%;
+  }
+
+  .container-two-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+    align-content: stretch;
+  }
+  .container-two-columns > div {
+    width: 100%;
   }
 }
 

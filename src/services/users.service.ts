@@ -43,9 +43,9 @@ export class UsersService {
   }
 
   // GET /repos/:owner/:repo/languages
-  // https://api.github.com/repos/johannesstroebele91/Angular_Knowledge/languages
+  // E. g. https://api.github.com/repos/johannesstroebele91/Angular_KnowledgeBase/languages
   getUserRepoLanguagesData(repo: any): Observable<any> {
-    return this.http.get('/githubapi/languages'
+    return this.http.get('/githubapi/repos'
       + '/'
       + repo.owner.login
       + '/'

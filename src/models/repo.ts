@@ -72,6 +72,7 @@ export interface Repo {
   open_issues: number;
   watchers: number;
   default_branch: string;
+  languages?: Language[] | null;
 }
 
 export interface Owner {
@@ -101,4 +102,9 @@ export interface License {
   spdx_id: string;
   url: string;
   node_id: string;
+}
+
+export interface Language {
+  frequency: number;
+  name: string;
 }
