@@ -90,12 +90,12 @@ export class SearchComponent {
       this.numberOfLanguageInReposWithoutDuplicates = Object.values(numberOfLanguageInReposWithoutDuplicatesObj);
       console.log('numberOfLanguageInReposWithoutDuplicates)');
       console.log(this.numberOfLanguageInReposWithoutDuplicates);
+      this.pieChartData = this.numberOfLanguageInReposWithoutDuplicates;
 
-      // TODO needs fixing
-      /* this.usersService.getUserRepoLanguagesData(this.repos[0]).subscribe(languages => {
+      this.usersService.getUserRepoLanguagesData(this.repos[0]).subscribe(languages => {
         this.languagesPerRepo.push(languages);
-        filterLanguages(languages);
-      }); */
+        // filterLanguages(languages);
+      });
     });
     // TODO needs fixing
     /*  filterLanguages(languagesPerRepo: any) {

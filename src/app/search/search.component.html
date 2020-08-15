@@ -148,10 +148,8 @@
       <!-- Tab Analysis -->
       <mat-tab label="Analysis">
         <!-- TODO for testing only, remove later -->
-        <h2>Test Data</h2>
-        <p *ngFor="let obj of this.numberOfLanguageInReposWithoutDuplicates">{{obj}}</p>
-
-        <h2>Repos per Coding Language</h2>
+        <h2>Most Used Languages</h2>
+        <p>Coding language per repository that the user most frequently used</p>
         <div class="chart">
           <canvas baseChart
                   [data]="pieChartData"
