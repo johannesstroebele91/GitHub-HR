@@ -11,7 +11,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$githubuser-dashboard-primary: mat-palette($mat-indigo);
+$githubuser-dashboard-primary: mat-palette($mat-blue);
 $githubuser-dashboard-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -69,11 +69,16 @@ h4, .h4, h5, .h5 {
   margin-bottom: 0.3em !important;
 }
 
-p, ul, ol, pre, table, blockquote, label, span {
+p, ul, ol, pre, table, blockquote, label, span, b {
   line-height: 1.6em!important;
   font-size: 1.1em!important;
   margin-top: 0;
   margin-bottom: 0.9em;
+}
+
+b {
+  font-weight: bold;
+  color: #4b4b4b;
 }
 
 ul ul, ol ol, ul ol, ol ul {
@@ -108,6 +113,10 @@ sub {
   bottom: -0.25em;
 }
 
+.mat-card {
+  background: #fcfcfc;
+}
+
 /* Interactive Elements*/
 .button-blue {
   display: inline-block;
@@ -125,10 +134,10 @@ sub {
 .button-white {
   display: inline-block;
   text-align: center;
-  padding: 12px 24px;
+  padding: 13px 27px;
   font-weight: 500;
   border-radius: 3px;
-  border: 3px solid #007bff;
+  border: 2px solid #007bff;
   background: white;
   margin: 12px 0 6px 0;
   color: #007bff;

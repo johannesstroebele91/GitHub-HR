@@ -35,10 +35,10 @@ export class UsersService {
     return this.http.get('/githubapi/users'
       + '/'
       + this.username
-      + '/repos'
-      + '?client_id='
+      + '/repos?per_page=100'
+      + '&client_id='
       + this.clientId
-      + '?client_secret='
+      + '&client_secret='
       + this.clientSecret);
   }
 

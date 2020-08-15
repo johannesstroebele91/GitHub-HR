@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="d-flex align-items-center justify-content-between mx-2 my-1">
+<nav class="d-flex align-items-center justify-content-between mx-2 my-1 nav-sticky">
   <div class="d-flex align-items-center w-100">
     <!-- Logo -->
     <a routerLink="/"><img class="logo logo-mobile mt-2" src="../../assets/logo-mobile.png" alt="logo" height="51"></a>
@@ -16,56 +16,11 @@
   <!-- User -->
   <div class="nav-user">
     <span class="user-name-display"><b>Lisa Musterfrau</b></span>
-    <a routerLink="/"><img id="nav-profile-mobile" src="../../assets/Lisa_Avatar.png" alt="Profile image"
-                           width="51"></a>
+    <img id="nav-profile-mobile" src="../../assets/Lisa_Avatar.png" alt="Profile image" width="51">
   </div>
 </nav>
 
 <div class="content">
-
-  <!-- TODO for testing only, remove later -->
-  <h2>Test Data</h2>
-  <div *ngFor="let obj of dataPieChartReposPerLanguage">
-    <p>{{obj.name}}: {{obj.value}}</p>
-  </div>
-
-  <h2>Repos per Coding Language</h2>
-  <div class="chart">
-    <canvas baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [options]="pieChartOptions"
-            [colors]="pieChartColors"
-            [legend]="pieChartLegend">
-    </canvas>
-  </div>
-
-  <h2>Stars per Repository</h2>
-  <div class="chart">
-    <canvas baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [options]="pieChartOptions"
-            [colors]="pieChartColors"
-            [legend]="pieChartLegend">
-    </canvas>
-  </div>
-
-  <h2>Commits per Language</h2>
-  <div class="chart">
-    <canvas baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [options]="pieChartOptions"
-            [colors]="pieChartColors"
-            [legend]="pieChartLegend">
-    </canvas>
-  </div>
-
-
 
   <!-- Popular Searches -->
   <div *ngIf="!user">
@@ -79,12 +34,13 @@
         <a (click)="searchUsername('johannesstroebele91')">johannesstroebele91</a>
       </div>
       <div class="mb-2">
-        <mat-icon (click)="searchUsername('Krymonota')" aria-hidden="false" aria-label="Search icon">search</mat-icon>
-        <a (click)="searchUsername('Krymonota')">Krymonota</a>
+        <mat-icon (click)="searchUsername('ForrestKnight')" aria-hidden="false" aria-label="Search icon">search
+        </mat-icon>
+        <a (click)="searchUsername('ForrestKnight')">ForrestKnight</a>
       </div>
       <div>
-        <mat-icon (click)="searchUsername('moritzgvt')" aria-hidden="false" aria-label="Search icon">search</mat-icon>
-        <a (click)="searchUsername('moritzgvt')">moritzgvt</a>
+        <mat-icon (click)="searchUsername('happypeter')" aria-hidden="false" aria-label="Search icon">search</mat-icon>
+        <a (click)="searchUsername('happypeter')">happypeter</a>
       </div>
     </div>
   </div>
@@ -104,6 +60,11 @@
       <!-- Tab Overall -->
       <mat-tab label="Overall">
         <div class="userinfo-and-avatar my-3">
+          <div>
+            <img height="180" (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture"
+                 src="{{user.avatar_url}}">
+            <p *ngIf="user.bio">{{user.bio}}</p>
+          </div>
           <div class="user-infos">
             <div *ngIf="user.login">
               <mat-icon aria-hidden="false" aria-label="Person icon">person</mat-icon>
@@ -123,19 +84,19 @@
             </div>
             <div *ngIf="user.blog" (click)="linkToWebsite(user.html_url)">
               <mat-icon aria-hidden="false" aria-label="Homepage icon">web</mat-icon>
-              <span>Visit website: <a>{{user.blog}}</a></span>
+              <span>Website: <a>{{user.blog}}</a></span>
             </div>
             <div *ngIf="user.email" (click)="linkToEmail(user.email)">
               <mat-icon aria-hidden="false" aria-label="Email icon">email</mat-icon>
-              <span>Send email: <a>{{user.email}}</a></span>
+              <span>Email: <a>{{user.email}}</a></span>
             </div>
             <div *ngIf="user.public_repos">
               <mat-icon aria-hidden="false" aria-label="Repos icon">dns</mat-icon>
-              <span>Visit repos: {{user.public_repos}}</span>
+              <span>Repos: {{user.public_repos}}</span>
             </div>
             <div *ngIf="user.public_gists">
               <mat-icon aria-hidden="false" aria-label="Gists icon">text_snippet</mat-icon>
-              <span>Visit gists: {{user.public_gists}}</span>
+              <span>Gists: {{user.public_gists}}</span>
             </div>
             <div *ngIf="user.followers">
               <mat-icon aria-hidden="false" aria-label="Followers icon">people</mat-icon>
@@ -154,18 +115,27 @@
               <span>Updated profile: {{user.updated_at}}</span>
             </div>
           </div>
-          <img height="180" (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture"
-               class="border-2 border-light rounded mb-0" src="{{user.avatar_url}}">
         </div>
-        <p *ngIf="user.bio">{{user.bio}}</p>
       </mat-tab>
 
       <!-- Tab Repos -->
       <mat-tab label="Repos">
-        <h2>{{repos.length}} Repositories</h2>
+        <!-- TODO: fix {{repos.length}} -->
+        <h2>{{reposAmount}} Repositories</h2>
         <mat-card *ngFor="let repo of repos" class="my-2 mx-1">
-          <a href="{{repo.html_url}}">{{repo.name}}</a>
+          <h3><a href="{{repo.html_url}}">{{repo.name}}</a></h3>
           <p>{{repo.description}}</p>
+          <ul>
+            <li *ngIf="repo.stargazers_count">Stars: {{repo.stargazers_count}}</li>
+            <li *ngIf="repo.language">Stars: {{repo.language}}</li>
+            <li *ngIf="repo.homepage">Homepage: <a href="{{repo.homepage}}">{{repo.homepage}}</a></li>
+            <li *ngIf="repo.size">Size: {{repo.size}}</li>
+            <li *ngIf="repo.has_wiki">Has a wiki: {{repo.has_wiki}}</li>
+            <li *ngIf="repo.has_issues">Has a issues: {{repo.has_issues}}</li>
+            <li *ngIf="repo.watchers">Watchers: {{repo.watchers}}</li>
+          </ul>
+          <button class="button-white">Visit Repository</button>
+
           <div fxFlex="50" fxLayout="row" *ngFor="let language of languagesPerRepo">
             <ng-container *ngFor="let languageItem of language | keyvalue">
               <p class="color-red">{{languageItem.key}}</p>
@@ -177,7 +147,45 @@
 
       <!-- Tab Analysis -->
       <mat-tab label="Analysis">
+        <!-- TODO for testing only, remove later -->
+        <h2>Test Data</h2>
+        <p *ngFor="let obj of this.numberOfLanguageInReposWithoutDuplicates">{{obj}}</p>
 
+        <h2>Repos per Coding Language</h2>
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [colors]="pieChartColors"
+                  [legend]="pieChartLegend">
+          </canvas>
+        </div>
+
+        <h2>Stars per Repository</h2>
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [colors]="pieChartColors"
+                  [legend]="pieChartLegend">
+          </canvas>
+        </div>
+
+        <h2>Commits per Language</h2>
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [colors]="pieChartColors"
+                  [legend]="pieChartLegend">
+          </canvas>
+        </div>
       </mat-tab>
     </mat-tab-group>
   </div>

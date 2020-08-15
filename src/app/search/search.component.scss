@@ -5,6 +5,17 @@
  */
 
 // 1. NAVIGATION
+.nav-sticky {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: #fdfdfd;
+  margin: 0 !important;
+  padding: 6px 12px;
+  border-bottom: 3px solid #f9f9f9;
+}
+
 .nav-user {
   white-space: nowrap
 }
@@ -98,6 +109,22 @@
   text-decoration: underline;
 }
 
+.userinfo-and-avatar > div:nth-child(1) {
+  text-align: center;
+}
+
+.userinfo-and-avatar > div {
+  background: #f9f9f9;
+  padding: 30px 18px;
+  border-radius: 6px;
+}
+
+.userinfo-and-avatar img {
+  margin: 0 auto 12px auto;
+  border: 4px solid #007bff;
+  border-radius: 3px;
+}
+
 // 3. RESPONSIVE
 @media (max-width: 575.98px) {
   .userinfo-and-avatar {
@@ -105,11 +132,8 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     align-content: stretch;
-  }
-  .userinfo-and-avatar > img {
-    margin: 0 auto;
   }
 }
 
@@ -133,6 +157,14 @@
     align-items: center;
     align-content: stretch;
   }
+
+  .userinfo-and-avatar > div:nth-child(1) {
+    width: 42%;
+    padding-right: 36px;
+  }
+  .userinfo-and-avatar > div:nth-child(2) {
+    width: 56%;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -152,7 +184,7 @@
   }
   // General
   .content {
-    padding: 0 3%;
+    padding: 72px 3%;
   }
   .link-github-portfolio {
     width: 100%;
@@ -174,7 +206,7 @@
 
   // General
   .content {
-    padding: 0 3%;
+    padding: 72px 3%;
   }
 }
 
