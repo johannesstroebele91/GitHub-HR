@@ -9,7 +9,8 @@
     <div class="search-bar">
       <label for="search"></label>
       <input type="text" id="search" placeholder="Search by username"
-             [(ngModel)]="username" name="username" (keyup.enter)="searchUsername()">
+             [(ngModel)]="username" name="username" (keyup.enter)="searchUsername()" #searchedUsername>
+      <span class="button-clear-searched-username" (click)="searchedUsername.value = ''">x</span>
       <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
     </div>
   </div>
@@ -61,12 +62,12 @@
       <mat-tab label="Overall">
         <h3 class="mt-4">Username: {{user.login}}</h3>
         <div class="userinfo-and-avatar my-3">
-          <div class="avatar-and-bio">
+          <div class="avatar-and-bio mat-card mat-focus-indicator">
             <img height="180" (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture"
                  src="{{user.avatar_url}}">
             <p *ngIf="user.bio">{{user.bio}}</p>
           </div>
-          <div class="user-infos">
+          <div class="user-infos mat-card mat-focus-indicator">
             <div *ngIf="user.company">
               <mat-icon aria-hidden="false" aria-label="Company icon">business</mat-icon>
               <span>Company: {{user.company}}</span>
@@ -119,7 +120,7 @@
       <mat-tab label="Repos">
         <!-- TODO: fix {{repos.length}} -->
         <h2>{{reposAmount}} Repositories</h2>
-        <mat-card *ngFor="let repo of repos" class="my-2 mx-1">
+        <mat-card *ngFor="let repo of repos" class="container-repositories my-2 mx-1">
           <h3><a href="{{repo.html_url}}">{{repo.name}}</a></h3>
           <p>{{repo.description}}</p>
           <div class="container-two-columns my-3">
@@ -138,7 +139,7 @@
               </div>
               <div *ngIf="repo.has_wiki">
                 <mat-icon aria-hidden="false" aria-label="Wiki icon">school</mat-icon>
-                <p>Wiki: <a href="{{repo.html_url}}/wiki">visit</a> </p>
+                <p>Wiki: <a href="{{repo.html_url}}/wiki">visit</a></p>
               </div>
               <div *ngIf="repo.open_issues_count > 0">
                 <mat-icon aria-hidden="false" aria-label="Issues icon">assignment</mat-icon>
@@ -164,50 +165,87 @@
                 <p>Stars: {{repo.stargazers_count}}</p>
               </div>
             </div>
+            <div>
+              <div class="chart">
+                <canvas baseChart
+                        [labels]="pieChartLabelsLanguagesOfRepos"
+                        [data]="pieChartDataNumberOfLanguages"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        [colors]="pieChartColors"
+                        [legend]="pieChartLegend">
+                </canvas>
+              </div>
+
+            </div>
           </div>
         </mat-card>
       </mat-tab>
 
       <!-- Tab Analysis -->
       <mat-tab label="Analysis">
-        <!-- TODO for testing only, remove later -->
-        <h2>Most Used Language per Repository</h2>
-        <p>Most frequently used coding language for each repository</p>
-        <div class="chart">
-          <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [chartType]="pieChartType"
-                  [options]="pieChartOptions"
-                  [colors]="pieChartColors"
-                  [legend]="pieChartLegend">
-          </canvas>
+        <div class="container-two-columns mt-4">
+          <div class="mat-card mat-focus-indicator">
+            <h3>Most used languages</h3>
+            <p>Most frequently used coding language for each repository</p>
+            <div class="chart">
+              <canvas baseChart
+                      [labels]="pieChartLabelsLanguagesOfRepos"
+                      [data]="pieChartDataNumberOfLanguages"
+                      [chartType]="pieChartType"
+                      [options]="pieChartOptions"
+                      [colors]="pieChartColors"
+                      [legend]="pieChartLegend">
+              </canvas>
+            </div>
+          </div>
+          <div class="mat-card mat-focus-indicator">
+            <h3>Most stared repositories</h3>
+            <p>The most starred repositories</p>
+            <div class="chart">
+              <canvas baseChart
+                      [labels]="pieChartLabelsStarsNamesOfRepos"
+                      [data]="pieChartDataStarsOfRepos"
+                      [chartType]="pieChartType"
+                      [options]="pieChartOptions"
+                      [colors]="pieChartColors"
+                      [legend]="pieChartLegend">
+              </canvas>
+            </div>
+          </div>
         </div>
 
-        <h2>Stars per Repository</h2>
-        <p>The most starred repositories of the user</p>
-        <div class="chart">
-          <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [chartType]="pieChartType"
-                  [options]="pieChartOptions"
-                  [colors]="pieChartColors"
-                  [legend]="pieChartLegend">
-          </canvas>
+        <div class="container-two-columns mt-4">
+          <div class="mat-card mat-focus-indicator">
+            <h3>Largest repositories</h3>
+            <p>The largest repositories</p>
+            <div class="chart">
+              <canvas baseChart
+                      [labels]="pieChartLabelsSizeNamesOfRepos"
+                      [data]="pieChartDataSizeOfRepos"
+                      [chartType]="pieChartType"
+                      [options]="pieChartOptions"
+                      [colors]="pieChartColors"
+                      [legend]="pieChartLegend">
+              </canvas>
+            </div>
+          </div>
+          <div class="mat-card mat-focus-indicator">
+            <h3>Most forked repositories</h3>
+            <p>The most forked repositories</p>
+            <div class="chart">
+              <canvas baseChart
+                      [labels]="pieChartLabelsForksNamesOfRepos"
+                      [data]="pieChartDataForksOfRepos"
+                      [chartType]="pieChartType"
+                      [options]="pieChartOptions"
+                      [colors]="pieChartColors"
+                      [legend]="pieChartLegend">
+              </canvas>
+            </div>
+          </div>
         </div>
 
-        <h2>Commits per Language</h2>
-        <div class="chart">
-          <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [chartType]="pieChartType"
-                  [options]="pieChartOptions"
-                  [colors]="pieChartColors"
-                  [legend]="pieChartLegend">
-          </canvas>
-        </div>
       </mat-tab>
     </mat-tab-group>
   </div>

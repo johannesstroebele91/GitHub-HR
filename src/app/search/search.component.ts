@@ -13,38 +13,73 @@ import {Repo, Language} from '../../models/repo';
 })
 export class SearchComponent {
 
-  // Search Data
+  // General
   username: string;
   user: User;
   repos: Repo[];
   reposAmount = 0;
+
+  // Most stared repositories
+  starsNameOfRepos: string[] = [];
+  starsOfRepos: number[] = [];
+
+  // Largest repositories
+  sizeNameOfRepos: string[] = [];
+  sizeOfRepos: number[] = [];
+
+  // Most forked repositories
+  forkNameOfRepos: string[] = [];
+  forkOfRepos: number[] = [];
+
+  // Most used languages per repository
   languageInRepos: string[] = [];
   languageInReposWithoutDuplicates: string[] = [];
   numberOfLanguageInReposWithoutDuplicates: number[] = [];
+
   languagesPerRepo: Language[] = []; // TODO fix variable
   languagesOfRepos: string[] = []; // TODO fix variable
 
-  // Charts
+  // CHARTS
+  // General
   pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
       position: 'top',
     },
   };
-
-  pieChartLabels: Label[] = this.languageInReposWithoutDuplicates;
-  pieChartData: number[] = this.numberOfLanguageInReposWithoutDuplicates;
   pieChartType: ChartType = 'doughnut';
   pieChartLegend = true;
-  pieChartColors = [{backgroundColor: ['#1abc9c', '#9b59b6', '#3498db', '#C4E538']},
+  pieChartColors = [{
+    backgroundColor: ['#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
+      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894',
+      '#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
+      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894']
+  },
   ];
 
-  // Constructor
+  // Data
+  // Most stared repository
+  pieChartLabelsStarsNamesOfRepos: Label[] = this.starsNameOfRepos;
+  pieChartDataStarsOfRepos: number[] = this.starsOfRepos;
+
+  // Largest repository
+  pieChartLabelsSizeNamesOfRepos: Label[] = this.sizeNameOfRepos;
+  pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
+
+  // Largest repository
+  pieChartLabelsForksNamesOfRepos: Label[] = this.forkNameOfRepos;
+  pieChartDataForksOfRepos: number[] = this.forkOfRepos;
+
+  // Most used language per repository
+  pieChartLabelsLanguagesOfRepos: Label[] = this.languageInReposWithoutDuplicates;
+  pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
+
+  // CONSTRUCTOR
   constructor(private usersService: UsersService) {
     Object.assign(this, {dataPieChartReposPerLanguage});
   }
 
-  // Methods
+  // API REQUEST METHODS
   searchUsername(username?: string) {
 
     // Search for string from last searched usernames
@@ -69,6 +104,33 @@ export class SearchComponent {
       // For displaying number of repos
       this.reposAmount = Object.keys(this.repos).length;
 
+      for (let i = 0; i < this.reposAmount; i++) {
+
+        // Most stared repository
+        // TODO: stargazers_count needs to be set relative to the min and max stars of all repos
+        if (this.repos[i].stargazers_count !== null && this.repos[i].stargazers_count > 0) {
+          this.starsNameOfRepos.push(this.repos[i].name);
+          this.starsOfRepos.push(this.repos[i].stargazers_count);
+        }
+
+        // Largest repository
+        // TODO: size needs to be set relative to the min and max size of all repos
+        if (this.repos[i].size !== null && this.repos[i].size > 1000) {
+          this.sizeNameOfRepos.push(this.repos[i].name);
+          this.sizeOfRepos.push(this.repos[i].size);
+        }
+
+        // Most forked repository
+        // TODO: forks_count needs to be set relative to the min and max forks of all repos
+        if (this.repos[i].forks_count !== null && this.repos[i].forks_count > 0) {
+          this.forkNameOfRepos.push(this.repos[i].name);
+          this.forkOfRepos.push(this.repos[i].forks_count);
+        }
+      }
+      console.log('this.sizeOfRepos');
+      console.log(this.sizeOfRepos);
+
+
       // Array for all languages in repos of one user
       let amountOfLanguageInReposWithoutNull = 0;
       for (let i = 0; i < this.reposAmount; i++) {
@@ -89,7 +151,7 @@ export class SearchComponent {
       this.numberOfLanguageInReposWithoutDuplicates = Object.values(numberOfLanguageInReposWithoutDuplicatesObj);
 
       // Needed for updating the pie chart
-      this.pieChartData = this.numberOfLanguageInReposWithoutDuplicates;
+      this.pieChartDataNumberOfLanguages = this.numberOfLanguageInReposWithoutDuplicates;
 
       // Getting the coding languages of each repository
       this.repos.forEach((repo) => {
@@ -134,7 +196,7 @@ export class SearchComponent {
       */
   }
 
-  // Links
+  // LINKS METHODS
   linkToWebsite(userLink: string) {
     window.open(userLink, '_blank');
   }
@@ -143,23 +205,13 @@ export class SearchComponent {
     window.open('mailto: ' + emailLink, '_blank');
   }
 
-  // Charts
-  // Repositories per Language: pieChartReposPerLanguage
+  // GENERAL METHODS
   // count number of random string element duplicates in array
   countRandomStringElementDuplicatesInArray() {
-
     const counts: number[] = [];
     this.languageInRepos.forEach((x) => {
       counts[x] = (counts[x] || 0) + 1;
     });
     return counts;
   }
-
-
-  // Stars per Repository: pieChartStarsPerRepo
-  // TODO add later when stars per repo are imported correctly
-
-  // Commits per Language: pieChartCommitsPerLanguage
-  // TODO add later when stars per repo are imported correctly
-
 }
