@@ -43,6 +43,7 @@ export class SearchComponent {
   // General
   pieChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     legend: {
       position: 'top',
     },
@@ -213,5 +214,9 @@ export class SearchComponent {
       counts[x] = (counts[x] || 0) + 1;
     });
     return counts;
+  }
+
+  resetPage(): void {
+    window.location.reload();
   }
 }

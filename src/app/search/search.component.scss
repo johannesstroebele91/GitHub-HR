@@ -68,6 +68,7 @@
 .content {
   max-width: 1200px;
 }
+
 .mat-tab-group {
   margin-bottom: 48px;
 }
@@ -124,22 +125,24 @@
   border-radius: 3px;
 }
 
-.container-two-columns > div {
+.container-columns > div {
   background: #f9f9f9;
 }
-.container-two-columns > div:first-child {
+
+.container-columns > div:first-child {
   margin-right: 24px;
 }
 
-.container-two-columns > div > div > * {
+.container-columns > div > div > * {
   display: inline-block;
 }
 
-.container-two-columns > div > div > .mat-icon {
+.container-columns > div > div > .mat-icon {
   position: relative;
   top: 6px;
   margin-right: 6px;
 }
+
 .button-clear-searched-username {
   line-height: 2em !important;
   font-size: 1.2em !important;
@@ -149,7 +152,16 @@
   margin: 0 !important;
   padding: 0 12px !important;
 }
-
+.text-warning {
+  color: #e733f4 !important;
+  font-style: italic;
+}
+.mat-card {
+  background: #fafafa;
+}
+.mat-icon {
+  color: #595959 !important;
+}
 
 // 3. RESPONSIVE
 @media (max-width: 575.98px) {
@@ -164,7 +176,7 @@
   .avatar-and-bio {
     margin-bottom: 18px;
   }
-  .container-two-columns {
+  .container-columns {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -202,7 +214,7 @@
     width: 56%;
   }
 
-  .container-two-columns {
+  .container-columns {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -210,13 +222,13 @@
     align-items: stretch;
     align-content: stretch;
   }
-  .container-two-columns > div {
+  .container-columns > div {
     width: 100%;
   }
-  .container-two-columns > div:nth-child(2) {
+  .container-columns > div:nth-child(2) {
     padding-left: 30px !important;
   }
-  }
+}
 
 @media (max-width: 767.98px) {
 
@@ -263,7 +275,50 @@
 
 @media (min-width: 1024px) {
   .content {
+    margin: 0 auto
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    margin: 0 auto
+  }
+}
+
+@media (max-width: 1999.89px) {
+  .container-graphs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+  }
+  .container-graphs > div {
+    margin-bottom: 24px !important;
+  }
+  .chart {
+    min-height: 270px
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-graphs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: stretch;
+  }
+  .container-graphs > div {
+    width: 100%;
+  }
+  .container-graphs > div:first-child {
+    margin-right: 24px !important;
+  }
+  .chart {
     position: relative;
-    left: 150px;
+    width: 510px;
   }
 }
