@@ -105,6 +105,6 @@ export interface License {
 }
 
 export interface Language {
-  frequency: number;
   name: string;
+  frequency: number;
 }

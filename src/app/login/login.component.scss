@@ -15,7 +15,12 @@
   color: #a94442;
 }
 
-.algin-left {
+.align-left {
   width: 100%;
   text-align: left !important;
+}
+
+.btn:hover {
+  color: #b4daff !important;
+  background: rgba(0, 116, 222, 0.82) !important;
 }

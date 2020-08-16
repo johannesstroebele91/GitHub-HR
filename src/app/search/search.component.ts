@@ -1,11 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {User} from '../../models/user';
-import {dataPieChartReposPerLanguage} from './pie-chart-data'; // TODO delete later due to testing data
 import {ChartType, ChartOptions} from 'chart.js';
 import {Label} from 'ng2-charts';
-import {Repo, Language} from '../../models/repo';
-import {Location} from '@angular/common';
+import {Repo} from '../../models/repo';
+
+/* STRUCTURE
+  1. Variables
+  2. Constructor
+  3. API request methods
+  4. Links methods
+  5. General Methods
+ */
 
 @Component({
   selector: 'app-search',
@@ -14,34 +20,40 @@ import {Location} from '@angular/common';
 })
 export class SearchComponent {
 
-  // General
+  // GENERAL VARIABLES
   username: string;
   user: User;
   repos: Repo[];
   reposAmount = 0;
 
-  // Most stared repositories
-  starsNameOfRepos: string[] = [];
-  starsOfRepos: number[] = [];
-
-  // Largest repositories
-  sizeNameOfRepos: string[] = [];
-  sizeOfRepos: number[] = [];
-
-  // Most forked repositories
-  forkNameOfRepos: string[] = [];
-  forkOfRepos: number[] = [];
+  // CHARTS VARIABLES
 
   // Most used languages per repository
   languageInRepos: string[] = [];
   languageInReposWithoutDuplicates: string[] = [];
   numberOfLanguageInReposWithoutDuplicates: number[] = [];
+  pieChartLabelsLanguagesOfRepos: Label[] = this.languageInReposWithoutDuplicates;
+  pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
 
-  languagesPerRepo: Language[] = []; // TODO fix variable
-  languagesOfRepos: string[] = []; // TODO fix variable
+  // Most stared repositories
+  starsNameOfRepos: string[] = [];
+  starsOfRepos: number[] = [];
+  pieChartLabelsStarsNamesOfRepos: Label[] = this.starsNameOfRepos;
+  pieChartDataStarsOfRepos: number[] = this.starsOfRepos;
 
-  // CHARTS
-  // General
+  // Largest repositories
+  sizeNameOfRepos: string[] = [];
+  sizeOfRepos: number[] = [];
+  pieChartLabelsSizeNamesOfRepos: Label[] = this.sizeNameOfRepos;
+  pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
+
+  // Most forked repositories
+  forkNameOfRepos: string[] = [];
+  forkOfRepos: number[] = [];
+  pieChartLabelsForksNamesOfRepos: Label[] = this.forkNameOfRepos;
+  pieChartDataForksOfRepos: number[] = this.forkOfRepos;
+
+  // Options for all charts
   pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -49,42 +61,26 @@ export class SearchComponent {
       position: 'top',
     },
   };
+
   pieChartType: ChartType = 'doughnut';
   pieChartLegend = true;
   pieChartColors = [{
     backgroundColor: ['#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
       '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894',
       '#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
-      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894']
-  },
+      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894',
+      '#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
+      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894']},
   ];
 
-  // Data
-  // Most stared repository
-  pieChartLabelsStarsNamesOfRepos: Label[] = this.starsNameOfRepos;
-  pieChartDataStarsOfRepos: number[] = this.starsOfRepos;
-
-  // Largest repository
-  pieChartLabelsSizeNamesOfRepos: Label[] = this.sizeNameOfRepos;
-  pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
-
-  // Largest repository
-  pieChartLabelsForksNamesOfRepos: Label[] = this.forkNameOfRepos;
-  pieChartDataForksOfRepos: number[] = this.forkOfRepos;
-
-  // Most used language per repository
-  pieChartLabelsLanguagesOfRepos: Label[] = this.languageInReposWithoutDuplicates;
-  pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
-
   // CONSTRUCTOR
-  constructor(private usersService: UsersService, private location: Location) {
-    Object.assign(this, {dataPieChartReposPerLanguage});
+  constructor(private usersService: UsersService) {
   }
 
   // API REQUEST METHODS
   searchUsername(username?: string) {
 
-    // Search for string from last searched usernames
+    // Search for string from last searched user names
     if (username) {
       this.username = username;
     }
@@ -100,7 +96,6 @@ export class SearchComponent {
 
     // Gets respective searched data about user's repos from service
     this.usersService.getUserReposData().subscribe(data => {
-
       this.repos = data;
 
       // For displaying number of repos
@@ -129,9 +124,6 @@ export class SearchComponent {
           this.forkOfRepos.push(this.repos[i].forks_count);
         }
       }
-      console.log('this.sizeOfRepos');
-      console.log(this.sizeOfRepos);
-
 
       // Array for all languages in repos of one user
       let amountOfLanguageInReposWithoutNull = 0;
@@ -158,7 +150,6 @@ export class SearchComponent {
       // Getting the coding languages of each repository
       this.repos.forEach((repo) => {
         this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
-
             repo.languages = [];
 
             Object.keys(languages).forEach((key) => repo.languages.push({
@@ -166,36 +157,10 @@ export class SearchComponent {
                 frequency: languages[key]
               })
             );
-            console.log('repo.languages');
-            console.log(repo.languages);
-            console.log(this.repos);
           }
         );
       });
-      console.log('this.repos');
-      console.log(this.repos);
-
-      /* Safe
-      this.usersService.getUserRepoLanguagesData(this.repos[0]).subscribe(languages => {
-        this.languagesPerRepo.push(languages);
-        console.log('languagesPerRepo');
-        console.log(this.languagesPerRepo);
-        filterLanguages(languages);
-      });
-      */
     });
-    // TODO needs fixing
-    /*  filterLanguages(languagesPerRepo: any) {
-        for (let i in languagesPerRepo) {
-          if(!languagesPerRepo.includes(i)) {
-            this.languagesPerRepo.push(this.languagesOfRepos);
-          }
-        }
-          for (const key in languages) {
-          const value = languages[key];
-        }
-      }
-      */
   }
 
   // LINKS METHODS
@@ -215,10 +180,5 @@ export class SearchComponent {
       counts[x] = (counts[x] || 0) + 1;
     });
     return counts;
-  }
-
-  resetPage(): void {
-    this.location.replaceState('/');
-    this.location.replaceState('/home');
   }
 }

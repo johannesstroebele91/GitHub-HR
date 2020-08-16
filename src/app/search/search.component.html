@@ -11,7 +11,8 @@
       <input type="text" id="search" placeholder="Search by username"
              [(ngModel)]="username" name="username" (keyup.enter)="searchUsername()" #searchedUsername>
       <a class="button-clear-searched-username" (click)="searchedUsername.value=''">x</a>
-      <mat-icon class="search-icon" (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
+      <mat-icon class="search-icon" (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search
+      </mat-icon>
     </div>
   </div>
   <!-- User -->
@@ -166,17 +167,9 @@
               </div>
             </div>
             <div>
-              <div class="chart">
-                <canvas baseChart
-                        [labels]="pieChartLabelsLanguagesOfRepos"
-                        [data]="pieChartDataNumberOfLanguages"
-                        [chartType]="pieChartType"
-                        [options]="pieChartOptions"
-                        [colors]="pieChartColors"
-                        [legend]="pieChartLegend">
-                </canvas>
+              <div class="repo-languages" *ngFor="let language of repo.languages">
+                <span><b>{{language.name}}:</b> {{language.frequency}}</span>
               </div>
-
             </div>
           </div>
         </mat-card>
@@ -188,7 +181,9 @@
           <div class="mat-card mat-focus-indicator">
             <h3>Most used languages</h3>
             <p>Most frequently used coding language for each repository</p>
-            <p class="text-warning" *ngIf="numberOfLanguageInReposWithoutDuplicates.length === 0">User has no repositories<p>
+            <p class="text-warning" *ngIf="numberOfLanguageInReposWithoutDuplicates.length === 0">User has no
+              repositories
+            <p>
             <div class="chart" *ngIf="numberOfLanguageInReposWithoutDuplicates">
               <canvas baseChart
                       [labels]="pieChartLabelsLanguagesOfRepos"
@@ -203,7 +198,8 @@
           <div class="mat-card">
             <h3>Most stared repositories</h3>
             <p>The most stared repositories</p>
-            <p class="text-warning" *ngIf="starsOfRepos.length === 0">User has no stared repositories<p>
+            <p class="text-warning" *ngIf="starsOfRepos.length === 0">User has no stared repositories
+            <p>
             <div class="chart" *ngIf="starsOfRepos">
               <canvas baseChart
                       [labels]="pieChartLabelsStarsNamesOfRepos"
@@ -221,7 +217,8 @@
           <div class="mat-card mat-focus-indicator">
             <h3>Largest repositories</h3>
             <p>The largest repositories</p>
-            <p class="text-warning" *ngIf="sizeOfRepos.length === 0">User has no repositories<p>
+            <p class="text-warning" *ngIf="sizeOfRepos.length === 0">User has no repositories
+            <p>
             <div class="chart" *ngIf="sizeOfRepos">
               <canvas baseChart
                       [labels]="pieChartLabelsSizeNamesOfRepos"
@@ -236,7 +233,8 @@
           <div class="mat-card mat-focus-indicator">
             <h3>Most forked repositories</h3>
             <p>The most forked repositories</p>
-            <p class="text-warning" *ngIf="forkOfRepos.length === 0">User has no forked repositories<p>
+            <p class="text-warning" *ngIf="forkOfRepos.length === 0">User has no forked repositories
+            <p>
             <div class="chart" *ngIf="forkOfRepos">
               <canvas baseChart
                       [labels]="pieChartLabelsForksNamesOfRepos"
