@@ -3,6 +3,12 @@ const path = require('path');
 const {createProxyMiddleware} = require('http-proxy-middleware');
 const app = express();
 
+// Tells server to load API keys from .env file into environmental variables
+require('dotenv').config();
+USERNAME = process.env.USERNAME;
+CLIENT_ID = process.env.CLIENT_ID;
+CLIENT_SECRET = process.env.CLIENT_SECRET;
+
 // Using proxy for rewriting the path for GitHub API
 // e.g. localhost:8080/githubapi/users/octocat -> https://api.github.com/users/octocat
 const proxyOptions = {
@@ -13,6 +19,8 @@ const proxyOptions = {
     '^/githubapi': '',
   }
 };
+
+
 
 // Add middleware for http proxying
 const apiProxy = createProxyMiddleware(proxyOptions);
