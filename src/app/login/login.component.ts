@@ -24,8 +24,6 @@ export class LoginComponent {
   // Checks the inserted credentials for the login
   onSubmit() {
     if (this.testLogin.email === 'test@gmail.com' && this.testLogin.password === 'password') {
-      console.log(this.testLogin.email);
-      console.log(this.testLogin.password);
       this.submitted = true;
       this.showSubmitError = false; // gives visual feedback using ngIf in HTML
       this.router.navigate(['/home']); // routes the user to the search page

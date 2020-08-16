@@ -22,7 +22,6 @@ export class UsersService {
         this.apiKeys = result;
         this.clientId = this.apiKeys.CLIENT_ID;
         this.clientSecret = this.apiKeys.CLIENT_SECRET;
-        console.log(this.apiKeys);
       });
   }
 
