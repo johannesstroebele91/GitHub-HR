@@ -3,7 +3,7 @@ const path = require('path');
 const {createProxyMiddleware} = require('http-proxy-middleware');
 const app = express();
 
-// Tells server to load API keys from .env file into environmental variables
+// Tells server to load API keys, that were defined in HEROKU, into environmental variables
 require('dotenv').config();
 
 app.get('/env', (req, res) => {

@@ -5,6 +5,7 @@ import {dataPieChartReposPerLanguage} from './pie-chart-data'; // TODO delete la
 import {ChartType, ChartOptions} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {Repo, Language} from '../../models/repo';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -76,7 +77,7 @@ export class SearchComponent {
   pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
 
   // CONSTRUCTOR
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private location: Location) {
     Object.assign(this, {dataPieChartReposPerLanguage});
   }
 
@@ -217,6 +218,7 @@ export class SearchComponent {
   }
 
   resetPage(): void {
-    window.location.reload();
+    this.location.replaceState('/');
+    this.location.replaceState('/home');
   }
 }

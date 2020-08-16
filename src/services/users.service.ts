@@ -11,12 +11,13 @@ export class UsersService {
 
   // API keys
   apiKeys: any;
-  clientId: any;
-  clientSecret: any;
+  clientId = 'a3b037c468909cdc00c5'; // TODO for hiding client id change to clientId: any;
+  clientSecret: any = '40b1f3890764ef7553d2c87ae3a284231d0ab6a8';  // TODO for hiding client secret change to clientSecret: any;
 
   constructor(private http: HttpClient) {
 
     // Load API keys from env endpoint for hiding client and secret id
+    /* TODO for hiding client id and client secret uncomment again
     this.http.get('/env')
       .subscribe(result => {
         this.apiKeys = result;
@@ -24,7 +25,7 @@ export class UsersService {
         this.clientSecret = this.apiKeys.CLIENT_SECRET;
         console.log(this.apiKeys);
       });
-
+      */
   }
 
   updateUsername(username: string) {

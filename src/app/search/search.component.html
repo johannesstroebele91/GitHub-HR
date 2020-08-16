@@ -10,7 +10,7 @@
       <label for="search"></label>
       <input type="text" id="search" placeholder="Search by username"
              [(ngModel)]="username" name="username" (keyup.enter)="searchUsername()" #searchedUsername>
-      <a class="button-clear-searched-username" (click)="resetPage()">x</a>
+      <a class="button-clear-searched-username" (click)="searchedUsername.value=''">x</a>
       <mat-icon class="search-icon" (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search</mat-icon>
     </div>
   </div>
