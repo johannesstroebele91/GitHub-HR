@@ -7,11 +7,24 @@ import {Observable} from 'rxjs';
 })
 export class UsersService {
 
-  private username = 'USERNAME';
-  private clientId = 'CLIENT_ID';
-  private clientSecret = 'CLIENT_SECRET';
+  private username;
+
+  // API keys
+  apiKeys: any;
+  clientId: any;
+  clientSecret: any;
 
   constructor(private http: HttpClient) {
+
+    // Load API keys from env endpoint for hiding client and secret id
+    this.http.get('/env')
+      .subscribe(result => {
+        this.apiKeys = result;
+        this.clientId = this.apiKeys.CLIENT_ID;
+        this.clientSecret = this.apiKeys.CLIENT_SECRET;
+        console.log(this.apiKeys);
+      });
+
   }
 
   updateUsername(username: string) {

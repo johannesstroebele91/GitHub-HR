@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginCredentials} from '../../models/login-credentials';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   showSubmitError = false;
   testLogin = new LoginCredentials('test@gmail.com', 'password');
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     this.testLogin.email = '';
     this.testLogin.password = '';
   }
