@@ -58,15 +58,14 @@ _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wik
 
 # 6. Development and deployment instructions
 A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation)
-* Development server: Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Development server: Run `ng serve` for a dev server. Navigate to `http://localhost:4040/`. The app will automatically reload if you change any of the source files.
 * Build: Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 * Production: after building the project, the Express application can be started via `node server.js`
 * Deployment: automatically via the Heroku continuous integration
 
 # 7. Endpoints
 A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation)
-* "/githubapi/users": getting user data from the GitHub API
-* "/githubapi/repos": getting the coding languages for each repository the GitHub API
+* "/githubapi/": getting user, repos, and coding languages data from the GitHub API
 * "/env": getting client id and client secret by injecting it from Heroku instead of exposing it to the application
 
 # 8. Lessons Learned
