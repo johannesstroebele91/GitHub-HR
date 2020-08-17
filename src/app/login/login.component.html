@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" #heroForm="ngForm" #heroForm="ngForm" class="container text-center form-width">
+<form #heroForm="ngForm" #heroForm="ngForm" class="container text-center form-width">
 
   <!-- Header -->
   <img class="logo mt-2" src="../../assets/logo-desktop.png" alt="logo" width="150">
@@ -25,7 +25,7 @@
   </div>
 
   <!-- Sign in button -->
-  <button class="btn button-blue btn-block my-4" type="button" (click)="onSubmit()">Sign in</button>
+  <button class="btn button-blue btn-block my-4" type="button" (click)="onSubmit()" (keyup.enter)="onSubmit()">Sign in</button>
   <p *ngIf="showSubmitError" class="submit-error">Your inserted login credentials are wrong. Please try again</p>
   <div class="d-flex justify-content-around">
     <div>

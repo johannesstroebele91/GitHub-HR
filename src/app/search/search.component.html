@@ -155,7 +155,7 @@
               </div>
               <div *ngIf="repo.size">
                 <mat-icon aria-hidden="false" aria-label="Size icon">zoom_out_map</mat-icon>
-                <p>Repo size: {{repo.size}}</p>
+                <p>Repo size: {{repo.size}} Kb</p>
               </div>
               <div *ngIf="repo.watchers">
                 <mat-icon aria-hidden="false" aria-label="Watchers icon">visibility</mat-icon>
@@ -168,7 +168,7 @@
             </div>
             <div>
               <div class="repo-languages" *ngFor="let language of repo.languages">
-                <span><b>{{language.name}}:</b> {{language.frequency}}</span>
+                <span><b>{{language.name}}:</b> {{language.frequency}} bytes</span>
               </div>
             </div>
           </div>
@@ -180,7 +180,7 @@
         <div class="container-graphs mt-4">
           <div class="mat-card mat-focus-indicator">
             <h3>Most used languages</h3>
-            <p>Most frequently used coding language for each repository</p>
+            <p>Unit: number of repositories that have the coding language</p>
             <p class="text-warning" *ngIf="numberOfLanguageInReposWithoutDuplicates.length === 0">User has no
               repositories
             <p>
@@ -197,7 +197,7 @@
           </div>
           <div class="mat-card">
             <h3>Most stared repositories</h3>
-            <p>The most stared repositories</p>
+            <p>Unit: number of stars for each repository</p>
             <p class="text-warning" *ngIf="starsOfRepos.length === 0">User has no stared repositories
             <p>
             <div class="chart" *ngIf="starsOfRepos">
@@ -216,7 +216,7 @@
         <div class="container-graphs mt-4">
           <div class="mat-card mat-focus-indicator">
             <h3>Largest repositories</h3>
-            <p>The largest repositories</p>
+            <p>Unit: size of the largest repository in bytes</p>
             <p class="text-warning" *ngIf="sizeOfRepos.length === 0">User has no repositories
             <p>
             <div class="chart" *ngIf="sizeOfRepos">
@@ -232,7 +232,7 @@
           </div>
           <div class="mat-card mat-focus-indicator">
             <h3>Most forked repositories</h3>
-            <p>The most forked repositories</p>
+            <p>Unit: number of forks for each repository</p>
             <p class="text-warning" *ngIf="forkOfRepos.length === 0">User has no forked repositories
             <p>
             <div class="chart" *ngIf="forkOfRepos">

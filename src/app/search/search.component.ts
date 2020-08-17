@@ -59,8 +59,9 @@ export class SearchComponent {
     maintainAspectRatio: false,
     legend: {
       position: 'top',
-    },
+    }
   };
+  // 8 repositories
 
   pieChartType: ChartType = 'doughnut';
   pieChartLegend = true;
