@@ -65,8 +65,7 @@ A more detailed explanation can be found on the [wiki page](https://github.com/j
 
 # 7. Endpoints
 A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation)
-* "/githubapi/users": getting user data from the GitHub API
-* "/githubapi/repos": getting the coding languages for each repository the GitHub API
+* "/githubapi/": getting user, repos, and coding languages data from the GitHub API
 * "/env": getting client id and client secret by injecting it from Heroku instead of exposing it to the application
 
 # 8. Lessons Learned
