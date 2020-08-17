@@ -12,14 +12,14 @@
 
   <!-- Email -->
   <label for="email" class="align-left">E-mail (test: test@gmail.com)</label>
-  <input type="email" id="email" [(ngModel)]="testLogin.email" #email="ngModel" name="email" class="form-control mb-4" placeholder="E-mail" required>
+  <input type="email" id="email" (keyup.enter)="onSubmit()" [(ngModel)]="testLogin.email" #email="ngModel" name="email" class="form-control mb-4" placeholder="E-mail" required>
   <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
     E-Mail is required
   </div>
 
   <!-- Password -->
   <label for="password" class="align-left">Password (test: password)</label>
-  <input type="password" id="password" [(ngModel)]="testLogin.password" #password="ngModel" name="password" class="form-control mb-4" placeholder="Password">
+  <input type="password" id="password" (keyup.enter)="onSubmit()" [(ngModel)]="testLogin.password" #password="ngModel" name="password" class="form-control mb-4" placeholder="Password">
   <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
     Password is required
   </div>
