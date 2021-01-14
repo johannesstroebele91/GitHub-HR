@@ -35,7 +35,6 @@ import {ChartsModule} from 'ng2-charts';
     MatTabsModule,
     MatCardModule
   ],
-  schemas: [NO_ERRORS_SCHEMA],
   providers: [UsersService],
   bootstrap: [AppComponent]
 })
