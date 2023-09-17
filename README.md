@@ -8,8 +8,7 @@ The goal is providing the human resources a more detailed picture of the coding 
 For example, which programming languages they most frequently code with, how many people follow them and how often they code in general. This may help them to easier and better evaluate the technical coding qualifications of the applicants.
 
 # 2. Application
-The application is explained in more detailed on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation). The website can can be visited by using the test username (test@gmail.com) and password (password): **https://github-hr.herokuapp.com/**
-![image](https://user-images.githubusercontent.com/33202527/90344410-d294e900-e019-11ea-8ed9-e878ec8c4bc7.png)
+The application is explained in more detailed on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation). The website can ba accessed locally by using the test username (test@gmail.com) and password (password).
 
 # 3. File Structure
 The code for this web application was developed, versioned, and managed using Git. A GitHub repository was used for storing the application code online. This is a quick overview of the files:
