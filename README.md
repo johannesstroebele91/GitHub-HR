@@ -1,8 +1,6 @@
 # 1. Summary
 This mobile first web application was developed for the [project 119400A](https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212594) ([Prof. Dr. Joachim Charzinski](https://www.hdm-stuttgart.de/person_view_kuerzel?kuerzel=charzinski)) with the lecturer [Tobias Schneider](https://www.hdm-stuttgart.de/kontakt/suche_ergebnis_liste?Id=6375853) at the Stuttgart Media University. 
 
-The website can can be visited by using the test username (test@gmail.com) and password (password): **https://github-hr.herokuapp.com/**
-
 The goal is providing the human resources a more detailed picture of the coding qualifications GitHub users. The reason for this is that more and more software development job applicants use GitHub to show their coding projects.
 
 For example, which programming languages they most frequently code with, how many people follow them and how often they code in general. This may help them to easier and better evaluate the technical coding qualifications of the applicants.
