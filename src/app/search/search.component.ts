@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {UsersService} from '../../services/users.service';
+import {ChartOptions, ChartType} from 'chart.js';
+// TODO fix import {Label} from 'ng2-charts';
 import {User} from '../../models/user';
-import {ChartType, ChartOptions} from 'chart.js';
-import {Label} from 'ng2-charts';
 import {Repo} from '../../models/repo';
 
 /* STRUCTURE
@@ -21,9 +21,9 @@ import {Repo} from '../../models/repo';
 export class SearchComponent {
 
   // GENERAL VARIABLES
-  username: string;
-  user: User;
-  repos: Repo[];
+  username: string = '';
+  user: User | undefined;
+  repos: Repo[] = [];
   reposAmount = 0;
 
   // CHARTS VARIABLES
@@ -32,34 +32,32 @@ export class SearchComponent {
   languageInRepos: string[] = [];
   languageInReposWithoutDuplicates: string[] = [];
   numberOfLanguageInReposWithoutDuplicates: number[] = [];
-  pieChartLabelsLanguagesOfRepos: Label[] = this.languageInReposWithoutDuplicates;
+  pieChartLabelsLanguagesOfRepos: any[] = this.languageInReposWithoutDuplicates; // TODO fix Label type
   pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
 
   // Most stared repositories
   starsNameOfRepos: string[] = [];
   starsOfRepos: number[] = [];
-  pieChartLabelsStarsNamesOfRepos: Label[] = this.starsNameOfRepos;
+  pieChartLabelsStarsNamesOfRepos: any[] = this.starsNameOfRepos; // TODO fix Label type
   pieChartDataStarsOfRepos: number[] = this.starsOfRepos;
 
   // Largest repositories
   sizeNameOfRepos: string[] = [];
   sizeOfRepos: number[] = [];
-  pieChartLabelsSizeNamesOfRepos: Label[] = this.sizeNameOfRepos;
+  pieChartLabelsSizeNamesOfRepos: any[] = this.sizeNameOfRepos; // TODO fix Label type
   pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
 
   // Most forked repositories
   forkNameOfRepos: string[] = [];
   forkOfRepos: number[] = [];
-  pieChartLabelsForksNamesOfRepos: Label[] = this.forkNameOfRepos;
+  pieChartLabelsForksNamesOfRepos: any[] = this.forkNameOfRepos;  // TODO fix Label type
   pieChartDataForksOfRepos: number[] = this.forkOfRepos;
 
   // Options for all charts
+  // TODO fix legend: { position: 'top', }
   pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    legend: {
-      position: 'top',
-    }
   };
   // 8 repositories
 
@@ -71,7 +69,8 @@ export class SearchComponent {
       '#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
       '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894',
       '#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
-      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894']},
+      '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894']
+  },
   ];
 
   // CONSTRUCTOR
@@ -81,7 +80,7 @@ export class SearchComponent {
   // API REQUEST METHODS
   searchUsername(username?: string) {
 
-    // Search for string from last searched user names
+    // Search for string from last searched usernames
     if (username) {
       this.username = username;
     }
@@ -153,7 +152,7 @@ export class SearchComponent {
         this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
             repo.languages = [];
 
-            Object.keys(languages).forEach((key) => repo.languages.push({
+            Object.keys(languages).forEach((key) => repo.languages?.push({
                 name: key,
                 frequency: languages[key]
               })
@@ -177,7 +176,7 @@ export class SearchComponent {
   // count number of random string element duplicates in array
   countRandomStringElementDuplicatesInArray() {
     const counts: number[] = [];
-    this.languageInRepos.forEach((x) => {
+    this.languageInRepos.forEach((x: any) => {
       counts[x] = (counts[x] || 0) + 1;
     });
     return counts;

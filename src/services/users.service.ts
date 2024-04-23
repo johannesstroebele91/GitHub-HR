@@ -1,29 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  apiEndpoint = 'https://api.github.com';
+  username = 'johannesstroebele91';
 
-  private apiEndpoint = '/githubapi';
-  private username;
-
-  // API keys
-  apiKeys: any;
-  clientId: any; // needs to be set manually for running the application locally
-  clientSecret: any; // needs to be set manually for running the application locally
   constructor(private http: HttpClient) {
-
-    // Load API keys from env endpoint for hiding client and secret id
-    // Can be uncommented if clientId and clientSecret is set manually
-    this.http.get('/env')
-      .subscribe(result => {
-        this.apiKeys = result;
-        this.clientId = this.apiKeys.CLIENT_ID;
-        this.clientSecret = this.apiKeys.CLIENT_SECRET;
-      });
   }
 
   updateUsername(username: string) {
@@ -36,9 +23,9 @@ export class UsersService {
       + '/users/'
       + this.username
       + '?client_id={'
-      + this.clientId
+      + environment.clientId
       + '}?client_secret='
-      + this.clientSecret);
+      + environment.clientSecret);
   }
 
   // GET /users/:username/repos
@@ -48,9 +35,9 @@ export class UsersService {
       + this.username
       + '/repos?per_page=100'
       + '&client_id='
-      + this.clientId
+      + environment.clientId
       + '&client_secret='
-      + this.clientSecret);
+      + environment.clientSecret);
   }
 
   // GET /repos/:owner/:repo/languages

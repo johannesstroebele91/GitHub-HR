@@ -1,24 +1,24 @@
 <!-- Navigation -->
-<nav class="d-flex align-items-center justify-content-between mx-2 my-1 nav-sticky">
-  <div class="d-flex align-items-center w-100">
+<nav>
+  <div>
     <!-- Logo -->
-    <a routerLink="/"><img class="logo logo-mobile mt-2" src="../../assets/logo-mobile.png" alt="logo" height="51"></a>
-    <a routerLink="/"><img class="logo logo-desktop mt-2" src="../../assets/logo-desktop.png" alt="logo"
-                           height="51"></a>
+    <a routerLink="/"><img alt="logo" class="logo logo-mobile mt-2" height="51" src="../../assets/logo-mobile.png"></a>
+    <a routerLink="/"><img alt="logo" class="logo logo-desktop mt-2" height="51"
+                           src="../../assets/logo-desktop.png"></a>
     <!-- Search bar -->
     <div class="search-bar">
       <label for="search"></label>
-      <input type="text" id="search" placeholder="Search by username"
-             [(ngModel)]="username" name="username" (keyup.enter)="searchUsername()" #searchedUsername>
-      <a class="button-clear-searched-username" (click)="searchedUsername.value=''">x</a>
-      <mat-icon class="search-icon" (click)="searchUsername()" aria-hidden="false" aria-label="Search icon">search
+      <input #searchedUsername (keyup.enter)="searchUsername()" [(ngModel)]="username"
+             id="search" name="username" placeholder="Search by username" type="text">
+      <a (click)="searchedUsername.value=''" class="button-clear-searched-username">x</a>
+      <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon" class="search-icon">search
       </mat-icon>
     </div>
   </div>
   <!-- User -->
   <div class="nav-user">
     <span class="user-name-display">Lisa Musterfrau</span>
-    <img id="nav-profile-mobile" src="../../assets/Lisa_Avatar.png" alt="Profile image" width="51">
+    <img alt="Profile image" id="nav-profile-mobile" src="../../assets/Lisa_Avatar.png" width="51">
   </div>
 </nav>
 
@@ -29,13 +29,13 @@
     <h2>Last Searches</h2>
     <p>These are GitHub usernames that you searched before. Click on one of the links to redo your search:</p>
     <div class="search-options">
-      <div class="mb-2">
+      <div>
         <mat-icon (click)="searchUsername('johannesstroebele91')" aria-hidden="false" aria-label="Search icon">
           search
         </mat-icon>
         <a (click)="searchUsername('johannesstroebele91')">johannesstroebele91</a>
       </div>
-      <div class="mb-2">
+      <div>
         <mat-icon (click)="searchUsername('ForrestKnight')" aria-hidden="false" aria-label="Search icon">search
         </mat-icon>
         <a (click)="searchUsername('ForrestKnight')">ForrestKnight</a>
@@ -51,8 +51,8 @@
   <div *ngIf="user">
 
     <div class="username-and-githublink">
-      <h2>{{user.name}}</h2>
-      <button class="button-blue link-github-portfolio" (click)="linkToWebsite(user.html_url)">Visit GitHub Profile
+      <h2>{{ user.name }}</h2>
+      <button (click)="linkToWebsite(user.html_url)" class="button-blue link-github-portfolio">Visit GitHub Profile
       </button>
     </div>
 
@@ -61,57 +61,57 @@
 
       <!-- Tab Overall -->
       <mat-tab label="Overall">
-        <h3 class="mt-4">Username: {{user.login}}</h3>
-        <div class="userinfo-and-avatar my-3">
+        <h3 class="mt-4">Username: {{ user.login }}</h3>
+        <div class="userinfo-and-avatar ">
           <div class="avatar-and-bio mat-card mat-focus-indicator">
-            <img height="180" (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture"
+            <img (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture" height="180"
                  src="{{user.avatar_url}}">
-            <p *ngIf="user.bio">{{user.bio}}</p>
+            <p *ngIf="user.bio">{{ user.bio }}</p>
           </div>
           <div class="user-infos mat-card mat-focus-indicator">
             <div *ngIf="user.company">
               <mat-icon aria-hidden="false" aria-label="Company icon">business</mat-icon>
-              <span>Company: {{user.company}}</span>
+              <span>Company: {{ user.company }}</span>
             </div>
             <div *ngIf="user.location">
               <mat-icon aria-hidden="false" aria-label="Location icon">location_on</mat-icon>
-              <span>Location: {{user.location}}</span>
+              <span>Location: {{ user.location }}</span>
             </div>
             <div *ngIf="user.hireable">
               <mat-icon aria-hidden="false" aria-label="Work icon">work</mat-icon>
-              <span>Hireable: {{user.hireable}}</span>
+              <span>Hireable: {{ user.hireable }}</span>
             </div>
-            <div *ngIf="user.blog" (click)="linkToWebsite(user.html_url)">
+            <div (click)="linkToWebsite(user.html_url)" *ngIf="user.blog">
               <mat-icon aria-hidden="false" aria-label="Homepage icon">web</mat-icon>
-              <span>Website: <a>{{user.blog}}</a></span>
+              <span>Website: <a>{{ user.blog }}</a></span>
             </div>
-            <div *ngIf="user.email" (click)="linkToEmail(user.email)">
+            <div (click)="linkToEmail(user.email)" *ngIf="user.email">
               <mat-icon aria-hidden="false" aria-label="Email icon">email</mat-icon>
-              <span>Email: <a>{{user.email}}</a></span>
+              <span>Email: <a>{{ user.email }}</a></span>
             </div>
             <div *ngIf="user.public_repos">
               <mat-icon aria-hidden="false" aria-label="Repos icon">dns</mat-icon>
-              <span>Repos: {{user.public_repos}}</span>
+              <span>Repos: {{ user.public_repos }}</span>
             </div>
             <div *ngIf="user.public_gists">
               <mat-icon aria-hidden="false" aria-label="Gists icon">text_snippet</mat-icon>
-              <span>Gists: {{user.public_gists}}</span>
+              <span>Gists: {{ user.public_gists }}</span>
             </div>
             <div *ngIf="user.followers">
               <mat-icon aria-hidden="false" aria-label="Followers icon">people</mat-icon>
-              <span>Followers: {{user.followers}}</span>
+              <span>Followers: {{ user.followers }}</span>
             </div>
             <div *ngIf="user.following">
               <mat-icon aria-hidden="false" aria-label="Following icon">people</mat-icon>
-              <span>Following: {{user.following}}</span>
+              <span>Following: {{ user.following }}</span>
             </div>
             <div *ngIf="user.created_at">
               <mat-icon aria-hidden="false" aria-label="Date joined icon">query_builder</mat-icon>
-              <span>Joined GitHub: {{user.created_at}}</span>
+              <span>Joined GitHub: {{ user.created_at }}</span>
             </div>
             <div *ngIf="user.updated_at">
               <mat-icon aria-hidden="false" aria-label="Date joined icon">update</mat-icon>
-              <span>Last profile update: {{user.updated_at}}</span>
+              <span>Last profile update: {{ user.updated_at }}</span>
             </div>
           </div>
         </div>
@@ -120,15 +120,15 @@
       <!-- Tab Repos -->
       <mat-tab label="Repos">
         <!-- TODO: fix {{repos.length}} -->
-        <h2>{{reposAmount}} Repositories</h2>
+        <h2>{{ reposAmount }} Repositories</h2>
         <mat-card *ngFor="let repo of repos" class="container-repositories my-2 mx-1">
-          <h3><a href="{{repo.html_url}}">{{repo.name}}</a></h3>
-          <p>{{repo.description}}</p>
+          <h3><a href="{{repo.html_url}}">{{ repo.name }}</a></h3>
+          <p>{{ repo.description }}</p>
           <div class="container-columns my-3">
             <div>
               <div *ngIf="repo.language">
                 <mat-icon aria-hidden="false" aria-label="Language icon">language</mat-icon>
-                <p>Main language: {{repo.language}}</p>
+                <p>Main language: {{ repo.language }}</p>
               </div>
               <div *ngIf="repo.name">
                 <mat-icon aria-hidden="false" aria-label="Website icon">storage</mat-icon>
@@ -144,31 +144,31 @@
               </div>
               <div *ngIf="repo.open_issues_count > 0">
                 <mat-icon aria-hidden="false" aria-label="Issues icon">assignment</mat-icon>
-                <p *ngIf="repo.open_issues">{{repo.open_issues}} issues:<a href="{{repo.html_url}}/issues"> visit</a>
+                <p *ngIf="repo.open_issues">{{ repo.open_issues }} issues:<a href="{{repo.html_url}}/issues"> visit</a>
                 </p>
               </div>
             </div>
             <div>
               <div *ngIf="repo.watchers">
                 <mat-icon aria-hidden="false" aria-label="Fork icon">call_split</mat-icon>
-                <p>Forks: {{repo.forks_count}}</p>
+                <p>Forks: {{ repo.forks_count }}</p>
               </div>
               <div *ngIf="repo.size">
                 <mat-icon aria-hidden="false" aria-label="Size icon">zoom_out_map</mat-icon>
-                <p>Repo size: {{repo.size}} Kb</p>
+                <p>Repo size: {{ repo.size }} Kb</p>
               </div>
               <div *ngIf="repo.watchers">
                 <mat-icon aria-hidden="false" aria-label="Watchers icon">visibility</mat-icon>
-                <p>Watchers: {{repo.watchers}}</p>
+                <p>Watchers: {{ repo.watchers }}</p>
               </div>
               <div *ngIf="repo.stargazers_count">
                 <mat-icon aria-hidden="false" aria-label="Stars icon">star</mat-icon>
-                <p>Stars: {{repo.stargazers_count}}</p>
+                <p>Stars: {{ repo.stargazers_count }}</p>
               </div>
             </div>
             <div>
-              <div class="repo-languages" *ngFor="let language of repo.languages">
-                <span><b>{{language.name}}:</b> {{language.frequency}} bytes</span>
+              <div *ngFor="let language of repo.languages" class="repo-languages">
+                <span><b>{{ language.name }}:</b> {{ language.frequency }} bytes</span>
               </div>
             </div>
           </div>
@@ -181,34 +181,36 @@
           <div class="mat-card mat-focus-indicator">
             <h3>Most used languages</h3>
             <p>Unit: number of repositories that have the coding language</p>
-            <p class="text-warning" *ngIf="numberOfLanguageInReposWithoutDuplicates.length === 0">User has no
+            <p *ngIf="numberOfLanguageInReposWithoutDuplicates.length === 0" class="text-warning">User has no
               repositories
             <p>
-            <div class="chart" *ngIf="numberOfLanguageInReposWithoutDuplicates">
-              <canvas baseChart
-                      [labels]="pieChartLabelsLanguagesOfRepos"
-                      [data]="pieChartDataNumberOfLanguages"
-                      [chartType]="pieChartType"
-                      [options]="pieChartOptions"
+            <div *ngIf="numberOfLanguageInReposWithoutDuplicates" class="chart">
+              <!-- TODO fix label, data, chartType, options, colors, legend is not known
+              <canvas [chartType]="pieChartType"
                       [colors]="pieChartColors"
-                      [legend]="pieChartLegend">
-              </canvas>
+                      [data]="pieChartDataNumberOfLanguages"
+                      [labels]="pieChartLabelsLanguagesOfRepos"
+                      [legend]="pieChartLegend"
+                      [options]="pieChartOptions"
+                      baseChart>
+              </canvas> -->
             </div>
           </div>
           <div class="mat-card">
             <h3>Most stared repositories</h3>
             <p>Unit: number of stars for each repository</p>
-            <p class="text-warning" *ngIf="starsOfRepos.length === 0">User has no stared repositories
+            <p *ngIf="starsOfRepos.length === 0" class="text-warning">User has no stared repositories
             <p>
-            <div class="chart" *ngIf="starsOfRepos">
-              <canvas baseChart
-                      [labels]="pieChartLabelsStarsNamesOfRepos"
-                      [data]="pieChartDataStarsOfRepos"
-                      [chartType]="pieChartType"
-                      [options]="pieChartOptions"
-                      [colors]="pieChartColors"
-                      [legend]="pieChartLegend">
-              </canvas>
+            <div *ngIf="starsOfRepos" class="chart">
+              <!-- TODO fix label, data, chartType, options, colors, legend is not known
+            <canvas [chartType]="pieChartType"
+                    [colors]="pieChartColors"
+                    [data]="pieChartDataStarsOfRepos"
+                    [labels]="pieChartLabelsStarsNamesOfRepos"
+                    [legend]="pieChartLegend"
+                    [options]="pieChartOptions"
+                    baseChart>
+            </canvas> -->
             </div>
           </div>
         </div>
@@ -217,9 +219,10 @@
           <div class="mat-card mat-focus-indicator">
             <h3>Largest repositories</h3>
             <p>Unit: size of the largest repository in bytes</p>
-            <p class="text-warning" *ngIf="sizeOfRepos.length === 0">User has no repositories
+            <p *ngIf="sizeOfRepos.length === 0" class="text-warning">User has no repositories
             <p>
-            <div class="chart" *ngIf="sizeOfRepos">
+            <div *ngIf="sizeOfRepos" class="chart">
+              <!-- TODO fix label, data, chartType, options, colors, legend is not known
               <canvas baseChart
                       [labels]="pieChartLabelsSizeNamesOfRepos"
                       [data]="pieChartDataSizeOfRepos"
@@ -227,23 +230,24 @@
                       [options]="pieChartOptions"
                       [colors]="pieChartColors"
                       [legend]="pieChartLegend">
-              </canvas>
+              </canvas> -->
             </div>
           </div>
           <div class="mat-card mat-focus-indicator">
             <h3>Most forked repositories</h3>
             <p>Unit: number of forks for each repository</p>
-            <p class="text-warning" *ngIf="forkOfRepos.length === 0">User has no forked repositories
+            <p *ngIf="forkOfRepos.length === 0" class="text-warning">User has no forked repositories
             <p>
-            <div class="chart" *ngIf="forkOfRepos">
-              <canvas baseChart
-                      [labels]="pieChartLabelsForksNamesOfRepos"
-                      [data]="pieChartDataForksOfRepos"
-                      [chartType]="pieChartType"
-                      [options]="pieChartOptions"
-                      [colors]="pieChartColors"
-                      [legend]="pieChartLegend">
-              </canvas>
+            <div *ngIf="forkOfRepos" class="chart">
+              <!-- TODO fix label, data, chartType, options, colors, legend is not known
+                <canvas baseChart
+                        [labels]="pieChartLabelsForksNamesOfRepos"
+                        [data]="pieChartDataForksOfRepos"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        [colors]="pieChartColors"
+                        [legend]="pieChartLegend">
+                </canvas> -->
             </div>
           </div>
         </div>
