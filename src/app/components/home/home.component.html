@@ -1,26 +1,21 @@
 <!-- Navigation -->
-<nav>
-  <div>
-    <!-- Logo -->
-    <a routerLink="/"><img alt="logo" class="logo logo-mobile mt-2" height="51" src="../../assets/logo-mobile.png"></a>
-    <a routerLink="/"><img alt="logo" class="logo logo-desktop mt-2" height="51"
-                           src="../../assets/logo-desktop.png"></a>
-    <!-- Search bar -->
+<mat-toolbar style="background: #f8f8f8">
+  <mat-toolbar-row style="display: flex; justify-content: space-between">
+    <img alt="logo" class="logo" height="49" ngSrc="../../../assets/logo-desktop.png" width="150">
     <div class="search-bar">
       <label for="search"></label>
-      <input #searchedUsername (keyup.enter)="searchUsername()" [(ngModel)]="username"
-             id="search" name="username" placeholder="Search by username" type="text">
-      <a (click)="searchedUsername.value=''" class="button-clear-searched-username">x</a>
-      <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon" class="search-icon">search
+      <input #searchedUsername (keyup.enter)="searchUsername()" [(ngModel)]="username" id="search"
+             name="username" placeholder="Search by GitHub username" type="text">
+      <mat-icon (click)="searchedUsername.value=''" aria-hidden="false" aria-label="Close icon" class="close-icon"
+      >close
+      </mat-icon>
+      <mat-icon (click)="searchUsername()" aria-hidden="false" aria-label="Search icon"
+                class="search-icon">search
       </mat-icon>
     </div>
-  </div>
-  <!-- User -->
-  <div class="nav-user">
-    <span class="user-name-display">Lisa Musterfrau</span>
-    <img alt="Profile image" id="nav-profile-mobile" src="../../assets/Lisa_Avatar.png" width="51">
-  </div>
-</nav>
+    <button (click)="logout()" color="primary" mat-raised-button>Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <div class="content">
 
@@ -64,8 +59,8 @@
         <h3 class="mt-4">Username: {{ user.login }}</h3>
         <div class="userinfo-and-avatar ">
           <div class="avatar-and-bio mat-card mat-focus-indicator">
-            <img (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture" height="180"
-                 src="{{user.avatar_url}}">
+            <img (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture" height="180" ngSrc="{{user.avatar_url}}"
+                 width="180">
             <p *ngIf="user.bio">{{ user.bio }}</p>
           </div>
           <div class="user-infos mat-card mat-focus-indicator">
