@@ -16,14 +16,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
-import {SearchComponent} from './search/search.component';
-import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './components/home/home.component';
+import {NgOptimizedImage} from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SearchComponent,
-    LoginComponent
+    HomeComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -37,13 +36,15 @@ import {LoginComponent} from './login/login.component';
     MatToolbarModule,
     MatButtonModule,
     BrowserModule,
+    MatTabsModule,
+    MatIconModule,
     RouterModule.forRoot(routes),
     MatFormFieldModule, MatInputModule,
-    CdkTextareaAutosize, MatProgressSpinner
+    CdkTextareaAutosize, MatProgressSpinner, NgOptimizedImage
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
-  exports: [RouterModule]
+  exports: [RouterModule, HomeComponent]
 })
 export class AppModule {
 }
