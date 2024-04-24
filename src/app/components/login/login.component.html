@@ -1,0 +1,78 @@
+<mat-card
+  style="padding: 30px 12px; text-align: center; max-width: 500px; margin: 3% auto 0 auto;"
+>
+  <img alt="logo" class="logo mt-2" height="50" ngSrc="../../../assets/logo-desktop.png" style="margin: 20px auto;"
+       width="150">
+  <mat-card-header style="display: block;">
+    <mat-card-title style=" font-size: 36px">Welcome!</mat-card-title>
+    <mat-card-subtitle style="margin: 30px auto 30px auto; line-height: 1.85"
+    >Optimize your screening process. Get insights into the GitHub profiles of developer candidates. Gain a
+      comprehensive
+      overview and delve into repository specifics for informed hiring decisions.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()">
+      <div [formGroup]="loginForm">
+        <mat-form-field style="display: block">
+          <mat-label>Enter your email</mat-label>
+          <input
+            autocomplete="email"
+            formControlName="email"
+            matInput
+            name="email"
+            placeholder="pat@example.com"
+          />
+          <mat-error *ngIf="email.invalid">{{
+              ERROR_MESSAGE
+            }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="display: block">
+          <mat-label>Enter your password</mat-label>
+          <input
+            [type]="hidePasswordInput ? 'password' : 'text'"
+            autocomplete="current-password"
+            formControlName="password"
+            matInput
+            name="password"
+          />
+          <button
+            (click)="hidePasswordInput = !hidePasswordInput"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePasswordInput"
+            mat-icon-button
+            matSuffix
+            type="button"
+          >
+            <mat-icon>{{
+                hidePasswordInput ? 'visibility_off' : 'visibility'
+              }}
+            </mat-icon>
+          </button>
+          <mat-error *ngIf="password.invalid">{{
+              ERROR_MESSAGE
+            }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button
+        color="primary"
+        mat-raised-button
+        style="margin: 0 auto;"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+  </mat-card-content>
+  <mat-error *ngIf="requestErrorMessage !== ''" style="margin-top: 10px"
+  >{{ requestErrorMessage }}
+  </mat-error>
+  <mat-card-footer
+  ><p style="margin: 20px auto 0;">
+    Not a member yet? <a routerLink="register">Register now!</a>
+  </p>
+  </mat-card-footer>
+</mat-card>
