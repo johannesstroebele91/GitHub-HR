@@ -1,10 +1,20 @@
 <!-- Navigation -->
-<mat-toolbar style="background: #f8f8f8">
+<mat-toolbar style="background: #f1f1f1; border-bottom: 3px solid #ebebeb;">
   <mat-toolbar-row style="display: flex; justify-content: space-between">
-    <img alt="logo" class="logo" height="49" ngSrc="../../../assets/logo-desktop.png" width="150">
+    <img alt="logo" class="logo" height="49" ngSrc="../../../assets/logo-desktop.png" priority width="150">
+    <button (click)="logout()" class="button-blue" mat-raised-button>Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="content">
+
+  <!-- Popular Searches -->
+  <mat-card *ngIf="!user"
+            style="padding: 40px 30px; max-width: 700px; margin: 3% auto 0 auto;"
+  >
     <div class="search-bar">
       <label for="search"></label>
-      <input #searchedUsername (keyup.enter)="searchUsername()" [(ngModel)]="username" id="search"
+      <input #searchedUsername (keyup.enter)="searchUsername()" [(ngModel)]="username" id="search" matInput
              name="username" placeholder="Search by GitHub username" type="text">
       <mat-icon (click)="searchedUsername.value=''" aria-hidden="false" aria-label="Close icon" class="close-icon"
       >close
@@ -13,16 +23,8 @@
                 class="search-icon">search
       </mat-icon>
     </div>
-    <button (click)="logout()" color="primary" mat-raised-button>Logout</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<div class="content">
-
-  <!-- Popular Searches -->
-  <div *ngIf="!user">
-    <h2>Last Searches</h2>
-    <p>These are GitHub usernames that you searched before. Click on one of the links to redo your search:</p>
+    <p style="font-weight: 500; margin-top: 40px">These are some example GitHub usernames (click on the links to
+      search):</p>
     <div class="search-options">
       <div>
         <mat-icon (click)="searchUsername('johannesstroebele91')" aria-hidden="false" aria-label="Search icon">
@@ -40,7 +42,7 @@
         <a (click)="searchUsername('moritzgvt')">moritzgvt</a>
       </div>
     </div>
-  </div>
+  </mat-card>
 
   <!-- Results -->
   <div *ngIf="user">
@@ -59,7 +61,8 @@
         <h3 class="mt-4">Username: {{ user.login }}</h3>
         <div class="userinfo-and-avatar ">
           <div class="avatar-and-bio mat-card mat-focus-indicator">
-            <img (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture" height="180" ngSrc="{{user.avatar_url}}"
+            <img (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture" height="180"
+                 ngSrc="{{user.avatar_url}}"
                  width="180">
             <p *ngIf="user.bio">{{ user.bio }}</p>
           </div>

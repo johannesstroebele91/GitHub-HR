@@ -191,7 +191,7 @@ export class RegistrationComponent {
         .subscribe({
           next: (response) => {
             console.log('User was created successfully', response);
-            this.router.navigate(['/home']);
+            void this.router.navigate(['/home']);
           },
           error: (error) => {
             this.requestErrorMessage = error;
