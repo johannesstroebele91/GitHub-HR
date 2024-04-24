@@ -12,31 +12,11 @@ body, .article {
   background: #fcfcfc;
 }
 
-// Interactive Elements
 .button-blue {
-  display: inline-block;
-  padding: 12px 24px;
-  margin: 12px 0 6px 0;
-  white-space: nowrap;
-  text-align: center;
-  font-weight: 500;
-  border-radius: 3px;
-  border: none;
-  background: #007bff;
-  color: white;
+  background: #007bff !important;
+  color: white !important;;
 }
 
-.button-white {
-  display: inline-block;
-  text-align: center;
-  padding: 13px 27px;
-  font-weight: 500;
-  border-radius: 3px;
-  border: 2px solid #007bff;
-  background: white;
-  margin: 12px 0 6px 0;
-  color: #007bff;
-}
 
 // Text
 h1, .h1 {
@@ -74,7 +54,7 @@ h4, .h4, h5, .h5 {
   margin-bottom: 0.3em !important;
 }
 
-p, ul, ol, pre, table, blockquote, label, span {
+p, ul, ol, pre {
   line-height: 1.6em !important;
   font-size: 1.1em !important;
   margin-top: 0;
