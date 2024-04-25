@@ -1,6 +1,6 @@
 <!-- Navigation -->
 <mat-toolbar style="background: #f1f1f1; border-bottom: 3px solid #ebebeb;">
-  <mat-toolbar-row style="display: flex; justify-content: space-between">
+  <mat-toolbar-row style="display: flex; justify-content:space-between;">
     <img alt="logo" class="logo" height="49" ngSrc="../../../assets/logo-desktop.png" priority width="150">
     <button (click)="logout()" class="button-blue" mat-raised-button>Logout</button>
   </mat-toolbar-row>
@@ -23,8 +23,8 @@
                 class="search-icon">search
       </mat-icon>
     </div>
-    <p style="font-weight: 500; margin-top: 40px">These are some example GitHub usernames (click on the links to
-      search):</p>
+    <p style="margin-top: 30px">On this page, you can search for the GitHub username of candidates to get insights into
+      their profiles. Click on the links below to find our more about the example GitHub users:</p>
     <div class="search-options">
       <div>
         <mat-icon (click)="searchUsername('johannesstroebele91')" aria-hidden="false" aria-label="Search icon">
@@ -45,11 +45,12 @@
   </mat-card>
 
   <!-- Results -->
-  <div *ngIf="user">
+  <mat-card *ngIf="user" style="padding: 40px 30px; max-width: 1200px; margin: 3% auto 0 auto;">
 
     <div class="username-and-githublink">
       <h2>{{ user.name }}</h2>
-      <button (click)="linkToWebsite(user.html_url)" class="button-blue link-github-portfolio">Visit GitHub Profile
+      <button (click)="linkToWebsite(user.html_url)" class="button-blue link-github-portfolio" mat-raised-button>Visit
+        GitHub Profile
       </button>
     </div>
 
@@ -58,7 +59,6 @@
 
       <!-- Tab Overall -->
       <mat-tab label="Overall">
-        <h3 class="mt-4">Username: {{ user.login }}</h3>
         <div class="userinfo-and-avatar ">
           <div class="avatar-and-bio mat-card mat-focus-indicator">
             <img (click)="linkToWebsite(user.html_url)" alt="GitHub profile picture" height="180"
@@ -67,6 +67,10 @@
             <p *ngIf="user.bio">{{ user.bio }}</p>
           </div>
           <div class="user-infos mat-card mat-focus-indicator">
+            <div *ngIf="user.login">
+              <mat-icon aria-hidden="false" aria-label="Username icon">account_circle</mat-icon>
+              <span>GitHub Username: {{ user.login }}</span>
+            </div>
             <div *ngIf="user.company">
               <mat-icon aria-hidden="false" aria-label="Company icon">business</mat-icon>
               <span>Company: {{ user.company }}</span>
@@ -105,77 +109,85 @@
             </div>
             <div *ngIf="user.created_at">
               <mat-icon aria-hidden="false" aria-label="Date joined icon">query_builder</mat-icon>
-              <span>Joined GitHub: {{ user.created_at }}</span>
+              <span>Joined GitHub: {{ user.created_at |  date:'dd/MM/yyyy' }}</span>
             </div>
             <div *ngIf="user.updated_at">
               <mat-icon aria-hidden="false" aria-label="Date joined icon">update</mat-icon>
-              <span>Last profile update: {{ user.updated_at }}</span>
+              <span>Last profile update: {{ user.updated_at |  date:'dd/MM/yyyy' }}</span>
             </div>
           </div>
         </div>
       </mat-tab>
 
       <!-- Tab Repos -->
-      <mat-tab label="Repos">
-        <!-- TODO: fix {{repos.length}} -->
+      <mat-tab *ngIf="reposAmount > 0" label="Repos" style="background: #f1f1f1">
         <h2>{{ reposAmount }} Repositories</h2>
-        <mat-card *ngFor="let repo of repos" class="container-repositories my-2 mx-1">
-          <h3><a href="{{repo.html_url}}">{{ repo.name }}</a></h3>
-          <p>{{ repo.description }}</p>
-          <div class="container-columns my-3">
-            <div>
-              <div *ngIf="repo.language">
-                <mat-icon aria-hidden="false" aria-label="Language icon">language</mat-icon>
-                <p>Main language: {{ repo.language }}</p>
+        <div *ngFor="let repo of repos">
+          <mat-card style="background: #f8f8f8; padding: 20px; margin: 20px 0">
+            <div style="display: flex; justify-content: space-between; text-align: center">
+              <h3>{{ repo.name }}</h3>
+              <button (click)="linkToWebsite(repo.html_url)" *ngIf="repo.html_url" mat-raised-button
+                      style="color: #4b4b4b">Visit Repository
+              </button>
+            </div>
+            <p>{{ repo.description }}</p>
+
+            <div class="container-columns">
+              <div>
+                <div *ngIf="repo.name">
+                  <mat-icon aria-hidden="false" aria-label="Website icon">storage</mat-icon>
+                  <p>Repository: <a href="{{repo.html_url}}">visit</a></p>
+                </div>
+                <div *ngIf="repo.homepage">
+                  <mat-icon aria-hidden="false" aria-label="Website icon">web</mat-icon>
+                  <p>Deployed Web App: <a href="{{repo.homepage}}">visit</a></p>
+                </div>
+                <div *ngIf="repo.has_wiki">
+                  <mat-icon aria-hidden="false" aria-label="Wiki icon">school</mat-icon>
+                  <p>Wiki: <a href="{{repo.html_url}}/wiki">visit</a></p>
+                </div>
+                <div *ngIf="repo.open_issues_count > 0">
+                  <mat-icon aria-hidden="false" aria-label="Issues icon">assignment</mat-icon>
+                  <p *ngIf="repo.open_issues">{{ repo.open_issues }} issues:<a href="{{repo.html_url}}/issues">
+                    visit</a>
+                  </p>
+                </div>
+                <div *ngIf="repo.language">
+                  <mat-icon aria-hidden="false" aria-label="Language icon">language</mat-icon>
+                  <p>Main language: {{ repo.language }}</p>
+                </div>
               </div>
-              <div *ngIf="repo.name">
-                <mat-icon aria-hidden="false" aria-label="Website icon">storage</mat-icon>
-                <p>Repository: <a href="{{repo.html_url}}">visit</a></p>
+              <div>
+                <div *ngIf="repo.watchers">
+                  <mat-icon aria-hidden="false" aria-label="Fork icon">call_split</mat-icon>
+                  <p>Forks: {{ repo.forks_count }}</p>
+                </div>
+                <div *ngIf="repo.size">
+                  <mat-icon aria-hidden="false" aria-label="Size icon">zoom_out_map</mat-icon>
+                  <p>Repo size: {{ repo.size }} Kb</p>
+                </div>
+                <div *ngIf="repo.watchers">
+                  <mat-icon aria-hidden="false" aria-label="Watchers icon">visibility</mat-icon>
+                  <p>Watchers: {{ repo.watchers }}</p>
+                </div>
+                <div *ngIf="repo.stargazers_count">
+                  <mat-icon aria-hidden="false" aria-label="Stars icon">star</mat-icon>
+                  <p>Stars: {{ repo.stargazers_count }}</p>
+                </div>
               </div>
-              <div *ngIf="repo.homepage">
-                <mat-icon aria-hidden="false" aria-label="Website icon">web</mat-icon>
-                <p>Website: <a href="{{repo.homepage}}">visit</a></p>
-              </div>
-              <div *ngIf="repo.has_wiki">
-                <mat-icon aria-hidden="false" aria-label="Wiki icon">school</mat-icon>
-                <p>Wiki: <a href="{{repo.html_url}}/wiki">visit</a></p>
-              </div>
-              <div *ngIf="repo.open_issues_count > 0">
-                <mat-icon aria-hidden="false" aria-label="Issues icon">assignment</mat-icon>
-                <p *ngIf="repo.open_issues">{{ repo.open_issues }} issues:<a href="{{repo.html_url}}/issues"> visit</a>
-                </p>
+              <div>
+                <div *ngFor="let language of repo.languages" class="repo-languages">
+                  <span><b>{{ language.name }}:</b> {{ language.frequency }} bytes</span>
+                </div>
               </div>
             </div>
-            <div>
-              <div *ngIf="repo.watchers">
-                <mat-icon aria-hidden="false" aria-label="Fork icon">call_split</mat-icon>
-                <p>Forks: {{ repo.forks_count }}</p>
-              </div>
-              <div *ngIf="repo.size">
-                <mat-icon aria-hidden="false" aria-label="Size icon">zoom_out_map</mat-icon>
-                <p>Repo size: {{ repo.size }} Kb</p>
-              </div>
-              <div *ngIf="repo.watchers">
-                <mat-icon aria-hidden="false" aria-label="Watchers icon">visibility</mat-icon>
-                <p>Watchers: {{ repo.watchers }}</p>
-              </div>
-              <div *ngIf="repo.stargazers_count">
-                <mat-icon aria-hidden="false" aria-label="Stars icon">star</mat-icon>
-                <p>Stars: {{ repo.stargazers_count }}</p>
-              </div>
-            </div>
-            <div>
-              <div *ngFor="let language of repo.languages" class="repo-languages">
-                <span><b>{{ language.name }}:</b> {{ language.frequency }} bytes</span>
-              </div>
-            </div>
-          </div>
-        </mat-card>
+          </mat-card>
+        </div>
       </mat-tab>
 
       <!-- Tab Analysis -->
       <mat-tab label="Analysis">
-        <div class="container-graphs mt-4">
+        <div class="container-graphs">
           <div class="mat-card mat-focus-indicator">
             <h3>Most used languages</h3>
             <p>Unit: number of repositories that have the coding language</p>
@@ -213,7 +225,7 @@
           </div>
         </div>
 
-        <div class="container-graphs mt-4">
+        <div class="container-graphs">
           <div class="mat-card mat-focus-indicator">
             <h3>Largest repositories</h3>
             <p>Unit: size of the largest repository in bytes</p>
@@ -249,8 +261,7 @@
             </div>
           </div>
         </div>
-
       </mat-tab>
     </mat-tab-group>
-  </div>
+  </mat-card>
 </div>

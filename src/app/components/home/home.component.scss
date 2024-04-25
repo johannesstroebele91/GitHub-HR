@@ -66,6 +66,11 @@
   margin-right: 6px;
 }
 
+.search-options > div {
+  color: #0063ca;
+  cursor: pointer;
+}
+
 // 2. GENERAL
 .content {
   max-width: 1200px;
@@ -98,7 +103,7 @@
   justify-content: flex-start;
   align-items: center;
   align-content: stretch;
-  margin: 6px 0;
+  margin: 9px 0;
 }
 
 .user-infos > div > span {
@@ -123,12 +128,12 @@
 
 .userinfo-and-avatar img {
   margin: 0 auto 12px auto;
-  border: 4px solid #007bff;
+  border: 4px solid #dddddd;
   border-radius: 3px;
 }
 
 .container-columns > div {
-  background: #f9f9f9;
+  padding: 10px;
 }
 
 .container-columns > div:first-child {
@@ -166,6 +171,14 @@
   white-space: nowrap;
 }
 
+.repo-languages > span {
+  line-height: 1.6em !important;
+  font-size: 1.1em !important;
+  margin-top: 0;
+  margin-bottom: 0.9em;
+  font-weight: 400;
+}
+
 // 3. RESPONSIVE
 @media (max-width: 575.98px) {
   .userinfo-and-avatar {
@@ -195,7 +208,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     align-content: stretch;
   }
   .username-and-githublink :first-child {
