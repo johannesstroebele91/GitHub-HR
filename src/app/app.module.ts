@@ -18,6 +18,7 @@ import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {HomeComponent} from './components/home/home.component';
 import {NgOptimizedImage} from '@angular/common';
+import {BaseChartDirective} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {NgOptimizedImage} from '@angular/common';
     MatIconModule,
     RouterModule.forRoot(routes),
     MatFormFieldModule, MatInputModule,
-    CdkTextareaAutosize, MatProgressSpinner, NgOptimizedImage
+    CdkTextareaAutosize, MatProgressSpinner, NgOptimizedImage, BaseChartDirective
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],

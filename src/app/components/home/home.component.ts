@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UsersService} from '../../../services/users.service';
 import {ChartOptions, ChartType} from 'chart.js';
-// TODO fix import {Label} from 'ng2-charts';
+import {Label} from 'ng2-charts';
 import {User} from '../../../models/user';
 import {Repo} from '../../../models/repo';
 import {Subscription} from 'rxjs';
@@ -23,40 +23,48 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   // GENERAL VARIABLES
-  isAuthenticated = false;
-  username: string = '';
+  username = '';
   user: User | undefined;
   repos: Repo[] = [];
   reposAmount = 0;
+
+  // CHARTS VARIABLES
+
   // Most used languages per repository
   languageInRepos: string[] = [];
   languageInReposWithoutDuplicates: string[] = [];
   numberOfLanguageInReposWithoutDuplicates: number[] = [];
-  pieChartLabelsLanguagesOfRepos: any[] = this.languageInReposWithoutDuplicates; // TODO fix Label type
-
-  // CHARTS VARIABLES
+  pieChartLabelsLanguagesOfRepos: Label[] = this.languageInReposWithoutDuplicates;
   pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
+
   // Most stared repositories
   starsNameOfRepos: string[] = [];
   starsOfRepos: number[] = [];
-  pieChartLabelsStarsNamesOfRepos: any[] = this.starsNameOfRepos; // TODO fix Label type
+  pieChartLabelsStarsNamesOfRepos: Label[] = this.starsNameOfRepos;
   pieChartDataStarsOfRepos: number[] = this.starsOfRepos;
+
   // Largest repositories
   sizeNameOfRepos: string[] = [];
   sizeOfRepos: number[] = [];
-  pieChartLabelsSizeNamesOfRepos: any[] = this.sizeNameOfRepos; // TODO fix Label type
+  pieChartLabelsSizeNamesOfRepos: Label[] = this.sizeNameOfRepos;
   pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
+
   // Most forked repositories
   forkNameOfRepos: string[] = [];
   forkOfRepos: number[] = [];
-  pieChartLabelsForksNamesOfRepos: any[] = this.forkNameOfRepos;  // TODO fix Label type
+  pieChartLabelsForksNamesOfRepos: Label[] = this.forkNameOfRepos;
   pieChartDataForksOfRepos: number[] = this.forkOfRepos;
 
-  // TODO fix legend: { position: 'top', }
+  // Options for all charts
   pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    legend: {
+      position: 'top',
+    }
   };
+  // 8 repositories
+
   pieChartType: ChartType = 'doughnut';
   pieChartLegend = true;
   pieChartColors = [{
@@ -69,6 +77,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   },
   ];
 
+  // OTHER VARIABLES
+  isAuthenticated = false;
   private userSub: Subscription | undefined;
 
   // CONSTRUCTOR
