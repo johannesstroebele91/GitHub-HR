@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   languageInReposWithoutDuplicates: string[] = [];
   numberOfLanguageInReposWithoutDuplicates: number[] = [];
   pieChartLabelsLanguagesOfRepos: any[] = this.languageInReposWithoutDuplicates; // TODO fix Label type
+
   // CHARTS VARIABLES
   pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
   // Most stared repositories
@@ -50,6 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   forkOfRepos: number[] = [];
   pieChartLabelsForksNamesOfRepos: any[] = this.forkNameOfRepos;  // TODO fix Label type
   pieChartDataForksOfRepos: number[] = this.forkOfRepos;
+
   // TODO fix legend: { position: 'top', }
   pieChartOptions: ChartOptions = {
     responsive: true,
@@ -66,6 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894']
   },
   ];
+
   private userSub: Subscription | undefined;
 
   // CONSTRUCTOR
@@ -82,7 +85,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/']);
+    void this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {
@@ -102,76 +105,78 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // Gets respective searched user data from service
     // Subscription to function necessary, because it returns an observable
-    this.usersService.getUserData().subscribe(data => {
-      this.user = data;
+    this.usersService.getUserData().subscribe({
+      next: data => this.user = data,
+      error: data => console.log('Error occurred during getting user', data)
     });
 
     // Gets respective searched data about user's repos from service
-    this.usersService.getUserReposData().subscribe(data => {
-      this.repos = data;
+    this.usersService.getUserReposData().subscribe({
+      next: data => {
+        this.repos = data;
 
-      // For displaying number of repos
-      this.reposAmount = Object.keys(this.repos).length;
+        // For displaying number of repos
+        this.reposAmount = Object.keys(this.repos).length;
 
-      for (let i = 0; i < this.reposAmount; i++) {
+        for (let i = 0; i < this.reposAmount; i++) {
 
-        // Most stared repository
-        // TODO: stargazers_count needs to be set relative to the min and max stars of all repos
-        if (this.repos[i].stargazers_count !== null && this.repos[i].stargazers_count > 0) {
-          this.starsNameOfRepos.push(this.repos[i].name);
-          this.starsOfRepos.push(this.repos[i].stargazers_count);
-        }
-
-        // Largest repository
-        // TODO: size needs to be set relative to the min and max size of all repos
-        if (this.repos[i].size !== null && this.repos[i].size > 1000) {
-          this.sizeNameOfRepos.push(this.repos[i].name);
-          this.sizeOfRepos.push(this.repos[i].size);
-        }
-
-        // Most forked repository
-        // TODO: forks_count needs to be set relative to the min and max forks of all repos
-        if (this.repos[i].forks_count !== null && this.repos[i].forks_count > 0) {
-          this.forkNameOfRepos.push(this.repos[i].name);
-          this.forkOfRepos.push(this.repos[i].forks_count);
-        }
-      }
-
-      // Array for all languages in repos of one user
-      let amountOfLanguageInReposWithoutNull = 0;
-      for (let i = 0; i < this.reposAmount; i++) {
-        if (this.repos[i].language !== null) {
-          this.languageInRepos.push(this.repos[i].language);
-          amountOfLanguageInReposWithoutNull++;
-        }
-      }
-
-      // The same array without duplicates
-      let languageInReposWithoutDuplicatesSet: Set<string>;
-      languageInReposWithoutDuplicatesSet = new Set(this.languageInRepos);
-      languageInReposWithoutDuplicatesSet.forEach(v => this.languageInReposWithoutDuplicates.push(v));
-
-      // How often the coding language occurs in the array
-      let numberOfLanguageInReposWithoutDuplicatesObj: any;
-      numberOfLanguageInReposWithoutDuplicatesObj = this.countRandomStringElementDuplicatesInArray();
-      this.numberOfLanguageInReposWithoutDuplicates = Object.values(numberOfLanguageInReposWithoutDuplicatesObj);
-
-      // Needed for updating the pie chart
-      this.pieChartDataNumberOfLanguages = this.numberOfLanguageInReposWithoutDuplicates;
-
-      // Getting the coding languages of each repository
-      this.repos.forEach((repo) => {
-        this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
-            repo.languages = [];
-
-            Object.keys(languages).forEach((key) => repo.languages?.push({
-                name: key,
-                frequency: languages[key]
-              })
-            );
+          // Most stared repository
+          if (this.repos[i].stargazers_count !== null && this.repos[i].stargazers_count > 0) {
+            this.starsNameOfRepos.push(this.repos[i].name);
+            this.starsOfRepos.push(this.repos[i].stargazers_count);
           }
-        );
-      });
+
+          // Largest repository
+          if (this.repos[i].size !== null && this.repos[i].size > 1000) {
+            this.sizeNameOfRepos.push(this.repos[i].name);
+            this.sizeOfRepos.push(this.repos[i].size);
+          }
+
+          // Most forked repository
+          if (this.repos[i].forks_count !== null && this.repos[i].forks_count > 0) {
+            this.forkNameOfRepos.push(this.repos[i].name);
+            this.forkOfRepos.push(this.repos[i].forks_count);
+          }
+        }
+
+        // Array for all languages in repos of one user
+        let amountOfLanguageInReposWithoutNull = 0;
+        for (let i = 0; i < this.reposAmount; i++) {
+          if (this.repos[i].language !== null) {
+            this.languageInRepos.push(this.repos[i].language);
+            amountOfLanguageInReposWithoutNull++;
+          }
+        }
+
+        // The same array without duplicates
+        let languageInReposWithoutDuplicatesSet: Set<string>;
+        languageInReposWithoutDuplicatesSet = new Set(this.languageInRepos);
+        languageInReposWithoutDuplicatesSet.forEach(v => this.languageInReposWithoutDuplicates.push(v));
+
+        // How often the coding language occurs in the array
+        let numberOfLanguageInReposWithoutDuplicatesObj: any;
+        numberOfLanguageInReposWithoutDuplicatesObj = this.countRandomStringElementDuplicatesInArray();
+        this.numberOfLanguageInReposWithoutDuplicates = Object.values(numberOfLanguageInReposWithoutDuplicatesObj);
+
+        // Needed for updating the pie chart
+        this.pieChartDataNumberOfLanguages = this.numberOfLanguageInReposWithoutDuplicates;
+
+        // Getting the coding languages of each repository
+        this.repos.forEach((repo) => {
+          this.usersService.getUserRepoLanguagesData(repo).subscribe(languages => {
+              repo.languages = [];
+
+              Object.keys(languages).forEach((key) => repo.languages?.push({
+                  name: key,
+                  frequency: languages[key]
+                })
+              );
+            }
+          );
+        });
+
+      },
+      error: data => console.log('Error occurred during getting user repos', data)
     });
   }
 
