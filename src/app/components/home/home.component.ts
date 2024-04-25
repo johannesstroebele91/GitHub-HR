@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UsersService} from '../../../services/users.service';
-import {ChartOptions, ChartType} from 'chart.js';
-import {Label} from 'ng2-charts';
+import {ArcElement, Chart, ChartData, ChartOptions, ChartType, DoughnutController, Legend, Tooltip} from 'chart.js';
 import {User} from '../../../models/user';
 import {Repo} from '../../../models/repo';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+
+Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
 /* STRUCTURE
   1. Variables
@@ -22,51 +23,25 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  // GENERAL VARIABLES
+  // AUTHENTICATION
+  isAuthenticated = false;
+  // CHART
   username = '';
   user: User | undefined;
   repos: Repo[] = [];
   reposAmount = 0;
-
-  // CHARTS VARIABLES
-
-  // Most used languages per repository
-  languageInRepos: string[] = [];
-  languageInReposWithoutDuplicates: string[] = [];
-  numberOfLanguageInReposWithoutDuplicates: number[] = [];
-  pieChartLabelsLanguagesOfRepos: Label[] = this.languageInReposWithoutDuplicates;
-  pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
-
-  // Most stared repositories
-  starsNameOfRepos: string[] = [];
-  starsOfRepos: number[] = [];
-  pieChartLabelsStarsNamesOfRepos: Label[] = this.starsNameOfRepos;
-  pieChartDataStarsOfRepos: number[] = this.starsOfRepos;
-
-  // Largest repositories
-  sizeNameOfRepos: string[] = [];
-  sizeOfRepos: number[] = [];
-  pieChartLabelsSizeNamesOfRepos: Label[] = this.sizeNameOfRepos;
-  pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
-
-  // Most forked repositories
-  forkNameOfRepos: string[] = [];
-  forkOfRepos: number[] = [];
-  pieChartLabelsForksNamesOfRepos: Label[] = this.forkNameOfRepos;
-  pieChartDataForksOfRepos: number[] = this.forkOfRepos;
-
-  // Options for all charts
+  pieChartLegend = true;
+  pieChartType: ChartType = 'doughnut';
   pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    legend: {
-      position: 'top',
+    plugins: {
+      legend: {
+        display: this.pieChartLegend,
+        position: 'top',
+      }
     }
   };
-  // 8 repositories
-
-  pieChartType: ChartType = 'doughnut';
-  pieChartLegend = true;
   pieChartColors = [{
     backgroundColor: ['#1abc9c', '#9b59b6', '#3498db', '#C4E538', '#eb4d4b',
       '#686de0', '#7ed6df', '#f9ca24', '#a29bfe', '#00b894',
@@ -77,8 +52,38 @@ export class HomeComponent implements OnInit, OnDestroy {
   },
   ];
 
-  // OTHER VARIABLES
-  isAuthenticated = false;
+  // Most used languages
+  languageInRepos: string[] = []; // Most used languages per repository
+  languageInReposWithoutDuplicates: string[] = [];
+  numberOfLanguageInReposWithoutDuplicates: number[] = [];
+  pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
+
+  // Most stared repositories
+  starsNameOfRepos: string[] = [];
+  starsOfRepos: number[] = [];
+  pieChartDataStarsOfRepos: ChartData<'doughnut'> = {
+    labels: this.starsNameOfRepos,
+    datasets: [
+      {
+        data: this.starsOfRepos,
+        backgroundColor: this.pieChartColors[0].backgroundColor,
+      }
+    ]
+  };
+
+  // Largest repositories
+  sizeNameOfRepos: string[] = [];
+  sizeOfRepos: number[] = [];
+  pieChartLabelsSizeNamesOfRepos: string[] = this.sizeNameOfRepos;
+  pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
+
+  // Most forked repositories
+  forkNameOfRepos: string[] = [];
+  forkOfRepos: number[] = [];
+  pieChartLabelsForksNamesOfRepos: string[] = this.forkNameOfRepos;
+  pieChartDataForksOfRepos: number[] = this.forkOfRepos;
+
+  // User Subscription for Authentication
   private userSub: Subscription | undefined;
 
   // CONSTRUCTOR

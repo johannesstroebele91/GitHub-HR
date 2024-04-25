@@ -195,14 +195,14 @@
               repositories
             <p>
             <div *ngIf="numberOfLanguageInReposWithoutDuplicates" class="chart">
-              <canvas [chartType]="pieChartType"
+              <!-- TODO fix later <canvas [chartType]="pieChartType"
                       [colors]="pieChartColors"
                       [data]="pieChartDataNumberOfLanguages"
                       [labels]="pieChartLabelsLanguagesOfRepos"
                       [legend]="pieChartLegend"
                       [options]="pieChartOptions"
                       baseChart>
-              </canvas>
+              </canvas> -->
             </div>
           </div>
           <div class="mat-card">
@@ -211,15 +211,13 @@
             <p *ngIf="starsOfRepos.length === 0" class="text-warning">User has no stared repositories
             <p>
             <div *ngIf="starsOfRepos" class="chart">
-              <!-- TODO fix label, data, chartType, options, colors, legend is not known
-            <canvas [chartType]="pieChartType"
-                    [colors]="pieChartColors"
-                    [data]="pieChartDataStarsOfRepos"
-                    [labels]="pieChartLabelsStarsNamesOfRepos"
-                    [legend]="pieChartLegend"
-                    [options]="pieChartOptions"
-                    baseChart>
-            </canvas> -->
+              <canvas [data]="pieChartDataStarsOfRepos" [legend]="pieChartLegend"
+                      [options]="pieChartOptions"
+                      [type]="pieChartType"
+                      baseChart
+              >
+              </canvas>
+
             </div>
           </div>
         </div>
