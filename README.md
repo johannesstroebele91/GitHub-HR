@@ -46,7 +46,7 @@ It was created with [Figma](https://www.figma.com/) based on the [Concept](https
 
 # 5. Technology Stack
 
-_This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wiki/MEAN_(solution_stack)). It is a a free and open-source JavaScript software stack for building dynamic web sites and web applications. A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Technology-Stack)._
+_A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Technology-Stack)._
 
 * Frontend: [HTML](https://www.w3.org/TR/html52/), [SCSS](https://sass-lang.com/), [TypeScript](https://www.typescriptlang.org/)
 * Frontend framework: [Angular CLI version 9.0.5](https://github.com/angular/angular-cli)
