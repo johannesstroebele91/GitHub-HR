@@ -1,7 +1,8 @@
 <!-- Navigation -->
 <mat-toolbar style="background: #f1f1f1; border-bottom: 3px solid #ebebeb;">
   <mat-toolbar-row style="display: flex; justify-content:space-between;">
-    <img alt="logo" class="logo" height="49" ngSrc="../../../assets/logo-desktop.png" priority width="150">
+    <img (click)="resetSearch()" alt="logo" class="logo" height="49" ngSrc="../../../assets/logo-desktop.png" priority
+         width="150">
     <button (click)="logout()" class="button-blue" mat-raised-button>Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -48,7 +49,13 @@
   <mat-card *ngIf="user" style="padding: 40px 30px; max-width: 1200px; margin: 3% auto 0 auto;">
 
     <div class="username-and-githublink">
-      <h2>{{ user.name }}</h2>
+      <div>
+        <button (click)="resetSearch()" aria-label="Back arrow" mat-icon-button
+                style="display: inline-block; margin-right: 7px">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2 style="display: inline-block">{{ user.name }}</h2>
+      </div>
       <button (click)="linkToWebsite(user.html_url)" class="button-blue link-github-portfolio" mat-raised-button>Visit
         GitHub Profile
       </button>

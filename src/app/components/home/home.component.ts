@@ -5,7 +5,6 @@ import {User} from '../../../models/user';
 import {Repo} from '../../../models/repo';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
-import {Router} from '@angular/router';
 
 Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
@@ -109,7 +108,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private userSub: Subscription | undefined;
 
   // CONSTRUCTOR
-  constructor(private usersService: UsersService, private authService: AuthService, private router: Router) {
+  constructor(private usersService: UsersService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -242,5 +241,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       counts[x] = (counts[x] || 0) + 1;
     });
     return counts;
+  }
+
+  resetSearch() {
+    this.user = undefined;
+    this.username = '';
   }
 }
