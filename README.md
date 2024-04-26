@@ -82,9 +82,12 @@ A more detailed explanation can be found on the [wiki page](https://github.com/j
 * It was very insightful to conduct user interviews
 * Designing a high fidel design mockup took to long with [Figma](https://www.figma.com/) (better use Balsamiq and spent more time on the development)
 * Services for making HTTP requests to the GitHub API was most interesting to learn
-* Hiding API keys by injecting them directly via Heroku configuration variables
-* Setting up Express for Heroku deployment (several issues and partially lacking documentation)
-* Using a proxy for rewriting the path for GitHub API (GitHub request were not let through by the Express backend without the rewrite)
+* Angular Material reactive forms 
+* Angular GET-, PUT-, POST-requests with realtime Firebase
+* Email/Password registration and login via Firebase authentication 
+* Protect routs with authentication guards
+* Interceptors for checking authentication automatically for each request
+* Deployment with Vercel
 
 # 9. Potential Improvements
 
@@ -93,9 +96,5 @@ A more detailed explanation can be found on the [wiki page](https://github.com/j
 * Implement comparison of one GitHub user with others (e. g. with charts and tables)
 * Create more and better visualizations to give even deeper insights using ng2-charts
 * Implement search for specific coding language for all users (filters would be great)
-* Replace normal search form with FormBuilder (https://coryrylan.com/blog/angular-form-builder-and-validation-management)
-* Use RxJS for dealing with more than one event or asynchronous computation see RxJS library
-* Implement user registration and login (https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial)
-* Create reverse proxy for faster and smoother flow of traffic between clients and servers (e.g. https://unit.nginx.org/howto/express/)
 * Setup database for registered users and connect it to the application
 * Implement testing with e. g. Karma and Jasmine
