@@ -47,33 +47,29 @@ It was created with [Figma](https://www.figma.com/) based on the [Concept](https
 # 5. Technology Stack
 
 _This technology stack is based on the [ME?N Stack](https://en.wikipedia.org/wiki/MEAN_(solution_stack)). It is a a free and open-source JavaScript software stack for building dynamic web sites and web applications. A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Technology-Stack)._
-![image](https://user-images.githubusercontent.com/33202527/90343811-3b796280-e014-11ea-9ea6-f7da7efeb4a6.png)
 
 * Frontend: [HTML](https://www.w3.org/TR/html52/), [SCSS](https://sass-lang.com/), [TypeScript](https://www.typescriptlang.org/)
 * Frontend framework: [Angular CLI version 9.0.5](https://github.com/angular/angular-cli)
 * UI component library: [Angular Material version 9.2.0](https://material.angular.io/)
-* Backend Framework: [Express](https://expressjs.com/)
-* JavaScript runtime environment: [Node.js](https://nodejs.org/en/)
 * Version control system: [Git](https://git-scm.com/)
 * Git repository hosting: [Github](http://github.com/)
 * Data source: [GitHub REST API v4](https://developer.github.com/v4/)
 * Data visualization library: [ng2-charts](https://valor-software.com/ng2-charts/)
+* Deployment: [Vercel](johannes-strbeles-projects);
 
 # 6. Development and deployment instructions
 
 A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation)
 
-* Development server: Run `ng serve` for a dev server. Navigate to `http://localhost:4040/`. The app will automatically reload if you change any of the source files.
-* Build: Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-* Production: after building the project, the Express application can be started via `node server.js`
-* Deployment: automatically via the Heroku continuous integration
+- Development Server: Run ng serve for a local development server accessible at http://localhost:4040/. Changes to source files trigger automatic reloading.
+- Build: Run ng build to create production-ready build artifacts stored in the dist/ directory. Use the --prod flag for optimized production builds.
+- Production Deployment: After building, run node server.js to start the production server. Deployment can be automated using Vercel's continuous integration features.
 
 # 7. Endpoints
 
 A more detailed explanation can be found on the [wiki page](https://github.com/johannesstroebele91/GitHubUserDashboard/wiki/Application-Explanation)
 
 * "/githubapi/": getting user, repos, and coding languages data from the GitHub API
-* "/env": getting client id and client secret by injecting it from Heroku instead of exposing it to the application
 
 # 8. Lessons Learned
 
