@@ -53,10 +53,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   // Most used languages
-  languageInRepos: string[] = []; // Most used languages per repository
+  languageInRepos: string[] = [];
   languageInReposWithoutDuplicates: string[] = [];
   numberOfLanguageInReposWithoutDuplicates: number[] = [];
-  pieChartDataNumberOfLanguages: number[] = this.numberOfLanguageInReposWithoutDuplicates;
+  pieChartDataNumberOfLanguages: ChartData<'doughnut'> = {
+    labels: this.languageInReposWithoutDuplicates,
+    datasets: [
+      {
+        data: this.numberOfLanguageInReposWithoutDuplicates,
+        backgroundColor: this.pieChartColors[0].backgroundColor,
+      }
+    ]
+  };
 
   // Most stared repositories
   starsNameOfRepos: string[] = [];
@@ -74,14 +82,28 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Largest repositories
   sizeNameOfRepos: string[] = [];
   sizeOfRepos: number[] = [];
-  pieChartLabelsSizeNamesOfRepos: string[] = this.sizeNameOfRepos;
-  pieChartDataSizeOfRepos: number[] = this.sizeOfRepos;
+  pieChartDataSizeOfRepos: ChartData<'doughnut'> = {
+    labels: this.sizeNameOfRepos,
+    datasets: [
+      {
+        data: this.sizeOfRepos,
+        backgroundColor: this.pieChartColors[0].backgroundColor,
+      }
+    ]
+  };
 
   // Most forked repositories
   forkNameOfRepos: string[] = [];
   forkOfRepos: number[] = [];
-  pieChartLabelsForksNamesOfRepos: string[] = this.forkNameOfRepos;
-  pieChartDataForksOfRepos: number[] = this.forkOfRepos;
+  pieChartDataForksOfRepos: ChartData<'doughnut'> = {
+    labels: this.forkNameOfRepos,
+    datasets: [
+      {
+        data: this.forkOfRepos,
+        backgroundColor: this.pieChartColors[0].backgroundColor,
+      }
+    ]
+  };
 
   // User Subscription for Authentication
   private userSub: Subscription | undefined;
@@ -174,7 +196,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.numberOfLanguageInReposWithoutDuplicates = Object.values(numberOfLanguageInReposWithoutDuplicatesObj);
 
         // Needed for updating the pie chart
-        this.pieChartDataNumberOfLanguages = this.numberOfLanguageInReposWithoutDuplicates;
+        this.pieChartDataNumberOfLanguages = {
+          labels: this.languageInReposWithoutDuplicates,
+          datasets: [
+            {
+              data: this.numberOfLanguageInReposWithoutDuplicates,
+              backgroundColor: this.pieChartColors[0].backgroundColor,
+            }
+          ]
+        };
+
 
         // Getting the coding languages of each repository
         this.repos.forEach((repo) => {

@@ -195,14 +195,12 @@
               repositories
             <p>
             <div *ngIf="numberOfLanguageInReposWithoutDuplicates" class="chart">
-              <!-- TODO fix later <canvas [chartType]="pieChartType"
-                      [colors]="pieChartColors"
-                      [data]="pieChartDataNumberOfLanguages"
-                      [labels]="pieChartLabelsLanguagesOfRepos"
+              <canvas [data]="pieChartDataNumberOfLanguages"
                       [legend]="pieChartLegend"
                       [options]="pieChartOptions"
+                      [type]="pieChartType"
                       baseChart>
-              </canvas> -->
+              </canvas>
             </div>
           </div>
           <div class="mat-card">
@@ -211,13 +209,13 @@
             <p *ngIf="starsOfRepos.length === 0" class="text-warning">User has no stared repositories
             <p>
             <div *ngIf="starsOfRepos" class="chart">
-              <canvas [data]="pieChartDataStarsOfRepos" [legend]="pieChartLegend"
+              <canvas [data]="pieChartDataStarsOfRepos"
+                      [legend]="pieChartLegend"
                       [options]="pieChartOptions"
                       [type]="pieChartType"
                       baseChart
               >
               </canvas>
-
             </div>
           </div>
         </div>
@@ -229,15 +227,13 @@
             <p *ngIf="sizeOfRepos.length === 0" class="text-warning">User has no repositories
             <p>
             <div *ngIf="sizeOfRepos" class="chart">
-              <!-- TODO fix label, data, chartType, options, colors, legend is not known
-              <canvas baseChart
-                      [labels]="pieChartLabelsSizeNamesOfRepos"
-                      [data]="pieChartDataSizeOfRepos"
-                      [chartType]="pieChartType"
+              <canvas [data]="pieChartDataSizeOfRepos"
+                      [legend]="pieChartLegend"
                       [options]="pieChartOptions"
-                      [colors]="pieChartColors"
-                      [legend]="pieChartLegend">
-              </canvas> -->
+                      [type]="pieChartType"
+                      baseChart>
+              </canvas>
+
             </div>
           </div>
           <div class="mat-card mat-focus-indicator">
@@ -246,15 +242,12 @@
             <p *ngIf="forkOfRepos.length === 0" class="text-warning">User has no forked repositories
             <p>
             <div *ngIf="forkOfRepos" class="chart">
-              <!-- TODO fix label, data, chartType, options, colors, legend is not known
-                <canvas baseChart
-                        [labels]="pieChartLabelsForksNamesOfRepos"
-                        [data]="pieChartDataForksOfRepos"
-                        [chartType]="pieChartType"
-                        [options]="pieChartOptions"
-                        [colors]="pieChartColors"
-                        [legend]="pieChartLegend">
-                </canvas> -->
+              <canvas [data]="pieChartDataForksOfRepos"
+                      [legend]="pieChartLegend"
+                      [options]="pieChartOptions"
+                      [type]="pieChartType"
+                      baseChart>
+              </canvas>
             </div>
           </div>
         </div>
