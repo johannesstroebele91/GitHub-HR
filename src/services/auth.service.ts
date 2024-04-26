@@ -73,7 +73,7 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    this.router.navigate(['/']);
+    void this.router.navigate(['/']);
     localStorage.removeItem('userData');
     // if we log out manually, the automatic timer should be cleared!
     if (this.tokenExpirationTimer) {
