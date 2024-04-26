@@ -1,6 +1,6 @@
 # 1. Summary
 
-This mobile first web application was developed for the [project 119400A](https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212594) ([Prof. Dr. Joachim Charzinski](https://www.hdm-stuttgart.de/person_view_kuerzel?kuerzel=charzinski)) with the lecturer [Tobias Schneider](https://www.hdm-stuttgart.de/kontakt/suche_ergebnis_liste?Id=6375853) at the Stuttgart Media University.
+This mobile first web application was developed for the [project 119400A](https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212594) ([Prof. Dr. Joachim Charzinski](https://www.hdm-stuttgart.de/person_view_kuerzel?kuerzel=charzinski)) with the lecturer [Tobias Schneider](https://www.hdm-stuttgart.de/kontakt/suche_ergebnis_liste?Id=6375853) at the Stuttgart Media University. In 2024, I did a complete overhaul to make it work with the present Angular, Angular Material, and ng2-charts versions.
 
 The goal is providing the human resources a more detailed picture of the coding qualifications GitHub users. The reason for this is that more and more software development job applicants use GitHub to show their coding projects.
 
